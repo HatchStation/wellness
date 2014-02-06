@@ -1,0 +1,150 @@
+
+.nav-people {
+  margin-right: 20px;
+  li > a > i {
+    font-size: 20px !important;
+  }
+}
+
+.we-box{
+  .we-title{
+    height: 42px;
+    background: white;
+    text-align: center;
+    padding: 12px;
+  }
+  .we-content{
+    min-height: 20px;
+    background: #ffffff;
+    margin-top: 3px;
+    padding: 5px;
+    font-size: 16px;
+    color: #b1b1b1;
+
+    ul li{
+      width: 50%;
+    }
+  }
+  .we-row{
+    border-bottom: solid 1px #e4e4e4;
+    margin: 10px;
+  }
+  .we-row i, div i{
+    font-size: 10px;
+  }
+  div span {
+    font-size: 12px;
+  }
+  .progress{
+    height: 10px;
+    margin: 0;
+  }
+  .box{
+    margin: 5px 0;
+  }
+}
+
+.we-target{
+  text-align: right;
+  span{
+    font-size: 20px;
+    display: block;
+  }
+}
+
+.we-profile{
+  p:first-child{
+    font-size: 18px;
+    font-weight: bold
+  }
+  p:nth-child(2){
+    font-size: 25px;
+    color: #cccccc
+  }
+  p:nth-child(2) i {
+    margin-right: 12px
+  }
+  p{
+    font-size: 16px;
+  }
+}
+.ht-wt{
+  text-align: center;
+  div {
+    font-size: 12px
+  }
+  div span{
+    font-size: 25px;
+    font-weight: bold
+  }
+}
+.smoke-status, .depression{
+  div:nth-child(2){
+    text-align: center
+  }
+  div span{
+    font-size: 20px;
+    color: #a9d248;
+  }
+}
+.medication{
+  div:nth-child(2) div{
+    text-align: center; font-size: 16px; padding: 5px
+  }
+}
+
+/* Higher than 1200 (desktop devices)
+====================================================================== */
+@media (min-width: 1200px) {
+
+}
+/* Higher than 980 (desktop devices)
+====================================================================== */
+@media only screen and (min-width: 980px) and (max-width: 1199px) {
+
+}
+/* Higher than 980 (desktop devices)
+====================================================================== */
+@media only screen and (min-width: 980px) {
+  .patient-search {
+    width: 25%;
+    margin-top: 13px;
+    margin-left: 250px;
+  }
+
+}
+/* Higher than 768 (desktop devices and tablets)
+====================================================================== */
+@media only screen and (min-width: 768px) {
+}
+/* Tablet Portrait (devices and browsers)
+====================================================================== */
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+  .patient-search {
+    margin-bottom: 5px;
+  }
+}
+/* All Mobile Sizes (devices and browser)
+====================================================================== */
+@media only screen and (max-width: 767px) {
+  .patient-search {
+    margin-bottom: -30px;
+  }
+  .we-profile{
+    text-align: center;
+  }
+  .we-image div {
+    float: none !important;
+    text-align: center;
+  }
+}
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers)
+====================================================================== */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
+=================================================================== */
+@media only screen and (max-width: 479px) {
+
+}

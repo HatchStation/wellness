@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Wellness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- start: Meta -->
+  <meta charset="utf-8">
+  <title>Wellness</title>
+  <meta name="description" content="--Wellness--">
+  <meta name="author" content="Duke">
+
+
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+  <!--[if lt IE 9 ]>
+    <link href="assets/style-ie.css" rel="stylesheet">
+  <![endif]-->
+
+  <!-- end: CSS -->
+
+
+  <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="assets/respond.min.js"></script>
+
+  <![endif]-->
+</head>
+<body>
+
+<!-- start: Header -->
+<div class="navbar">
+  <%= render partial: '/layouts/header' %>
+</div>
+<!-- start: Header -->
+
+<div class="container">
+  <div class="row">
+
+
+<%= yield %>
+  </div>
+
+
+  <!-- /.modal -->
+
+  <div class="clearfix"></div>
+
+  <footer>
+    <p>
+      <span style="text-align:left;float:left">&copy; 2013 Wellness</span>
+    </p>
+  </footer>
+
+</div>
+
+<!-- start: JavaScript-->
+<!--[if !IE]>-->
+
+<script src="/assets/jquery-2.0.3.min.js"></script>
+
+<!--<![endif]-->
+
+<!--[if IE]>
+
+<script src="assets/jquery-1.10.2.min.js"></script>
+
+<![endif]-->
+
+<!--[if !IE]>-->
+
+<script type="text/javascript">
+  window.jQuery || document.write("<script src='assets/jquery-2.0.3.min.js'>" + "<" + "/script>");
+</script>
+
+<!--<![endif]-->
+
+<!--[if IE]>
+
+<script type="text/javascript">
+  window.jQuery || document.write("<script src='assets/jquery-1.10.2.min.js'>" + "<" + "/script>");
+</script>
+
+<![endif]-->
+
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+</body>
+</html>
