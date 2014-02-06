@@ -1,4 +1,5 @@
 set :stage, :production
+set :branch, "master"
 
 # Simple Role Syntax
 # ==================
@@ -17,13 +18,12 @@ role :web, %w{23.92.18.198}
 # something that quacks like a hash can be used to set
 # extended properties on the server.
 server '23.92.18.198',
-       user: 'deploy',
        roles: %w{web app},
        ssh_options: {
          user: 'root',
-         keys: %w(~/.ssh/id_rsa),
-         forward_agent: false,
-         auth_methods: %w(publickey)
+         keys: %w(/home/ashwin/.ssh/id_rsa.pub),
+         auth_methods: %w(password),
+         password: 'gigumes@linode'
        }
 
 
