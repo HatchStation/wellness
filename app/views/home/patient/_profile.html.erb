@@ -1,0 +1,112 @@
+<div class="col-md-3 col-sm-6 col-xs-6 we-image">
+  <div class="pull-right">
+    <%= image_tag '/assets/patient.png', style: 'width: 200px;' %>
+  </div>
+</div>
+
+<div class="col-md-2 col-sm-6 col-xs-6 we-profile">
+  <p style="text-transform:uppercase;">
+    <%= "#{user['owner_first_name']} #{user['owner_last_name']}" %>
+    <!--NELSUN CHU-->
+  </p>
+  <p>
+    <i class="fa fa-comment"></i>
+    <i class="fa fa-calendar"></i>
+  </p>
+  <p>
+    <%= user['owner_home_address'] %>
+    <!--123 Bushwick Ave-->
+    <br>
+    <%= user['owner_city'] %>
+    <!--Brooklyn, NY 11211-->
+  </p>
+  <p>
+    <%= "#{user['owner_state']}, #{user['owner_zip']}" %>
+  </p>
+  <p>
+    <%= user['owner_home_phone'] %>
+    <!--(908)123-9876-->
+  </p>
+  <p>
+    <%= user['owner_work_phone'] %>
+  </p>
+</div>
+
+<div class="col-md-3 col-sm-12 col-xs-12" style="min-width: 209px">
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 we-box">
+      <div class="box">
+        <div class="we-title">
+          height + weight
+        </div>
+        <div class="we-content">
+          <div class="row ht-wt">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                  <span>
+                    <%= biometrics['hght']['value'] %>
+                  </span>
+              <!--<span>5</span>-->
+              <!--th-->
+              <!--<span>10</span>-->
+              <!--in-->
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                  <span>
+                    <!--138.2-->
+                    <%= biometrics['wght']['value'] %>
+                  </span>
+              pound
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--</div>-->
+    <!--<div class="row">-->
+    <div class="col-md-12 col-sm-12 col-xs-12 we-box">
+      <div class="box smoke-status">
+        <div class="we-title">
+          Smoking Status
+        </div>
+        <div class="we-content">
+              <span>
+                Non-smoker
+              </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="col-md-3 col-sm-12 col-xs-12" style="min-width: 209px">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 we-box">
+      <div class="box depression">
+        <div class="we-title">
+          depression
+        </div>
+        <div class="we-content">
+              <span>
+                <!--Inactive-->
+                <%= risks['depression'].to_i == 0 ? 'Inactive' : 'Active' %>
+              </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12 we-box">
+      <div class="box medication">
+        <div class="we-title">
+          medication
+        </div>
+        <div class="we-content">
+          <div>
+            Lipitor, Lasix
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

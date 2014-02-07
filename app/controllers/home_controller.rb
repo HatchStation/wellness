@@ -7,19 +7,26 @@ class HomeController < ApplicationController
   end
 
   def patient
-    eid = params[:eid]
-    pw = params[:pw]
-    username = params[:username]
-    upw = params[:upw]
+    id = params[:id]
+
+    eid = "P#{id}"
+    pw = "PW#{id}"
+    username = "#{id}"
+    upw = username
 
     if eid && pw && username && upw
-      biometrics = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}"))
+      bio_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}"))
+      biometrics = downcase_hash(bio_hash)
       sleep 0.1
-      risks = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getrisk&eid=#{eid}&pw=#{pw}"))
-      sleep 0.1
-      user = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=retrieve&username=#{username}&pw=#{upw}"))
 
-      @patient = { biometrics: biometrics, risks: risks.first, user: user }
+      risk_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getrisk&eid=#{eid}&pw=#{pw}"))
+      risks = downcase_hash(risk_hash.first)
+      sleep 0.1
+
+      user_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=retrieve&username=#{username}&pw=#{upw}"))
+      user = downcase_hash(user_hash)
+
+      @patient = { biometrics: biometrics, risks: risks, user: user }
     else
      redirect_to root_path
     end
@@ -27,5 +34,15 @@ class HomeController < ApplicationController
 
   def demo
 
+  end
+
+  private
+
+  def downcase_hash(hash)
+    new_hash = {}
+    hash.to_hash.each_pair do |k,v|
+      new_hash.merge!({k.downcase => v})
+    end
+    return new_hash
   end
 end
