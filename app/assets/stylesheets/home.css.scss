@@ -93,6 +93,35 @@
   }
 }
 
+.cholesterol{
+  hr{
+    margin: 0;
+  }
+  .chol-units{
+    div{
+      font-size: 13px;
+      font-weight: bold;
+      border-right: solid 1px #ccc;
+      div{
+        border-right: none;
+        font-size: 12px;
+        font-weight: normal;
+        span{
+          font-size: 18px;
+        }
+      }
+    }
+    div:last-child{
+      border-right: none;
+    }
+  }
+  .chol-prog{
+    .progress{
+      height: 20px;
+    }
+  }
+}
+
 /* Higher than 1200 (desktop devices)
 ====================================================================== */
 @media (min-width: 1200px) {
@@ -137,6 +166,15 @@
     float: none !important;
     text-align: center;
   }
+
+  .chol-units{
+    div{
+      border-right: none !important;
+      div{
+        float: right;
+      }
+    }
+  }
 }
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers)
 ====================================================================== */
@@ -146,5 +184,6 @@
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
 =================================================================== */
 @media only screen and (max-width: 479px) {
+
 
 }

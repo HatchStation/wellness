@@ -1,12 +1,12 @@
 <div id="content" class="col-sm-12">
-biometrics
-<%= biometrics = @patient[:biometrics] %>
+<!--biometrics-->
+<% biometrics = @patient[:biometrics] %>
 <br>
-risks
-<%= risks = @patient[:risks] %>
+<!--risks-->
+<% risks = @patient[:risks] %>
 <br>
-user
-<%= user = @patient[:user] %>
+<!--user-->
+<% user = @patient[:user] %>
 <br>
   <div class="row">
     <%= render partial: '/home/patient/profile', locals: {biometrics: biometrics, risks: risks, user: user} %>
@@ -49,19 +49,11 @@ user
   <div class="row">
 
     <div class="col-md-4 col-sm-4 we-box">
-      <%= render partial: '/home/patient/cholestral', locals: {biometrics: biometrics, risks: risks, user: user} %>
+      <%= render partial: '/home/patient/cholesterol', locals: {biometrics: biometrics, risks: risks, user: user} %>
     </div>
 
     <div class="col-md-4 col-sm-4 we-box">
       <%= render partial: '/home/patient/blood_sugar', locals: {biometrics: biometrics, risks: risks, user: user} %>
-      <!--<div class="box span4" ontablet="span6" ondesktop="span4">-->
-        <!--<div class="box-header">-->
-          <!--blood sugar-->
-        <!--</div>-->
-        <!--<div class="box-content">-->
-
-        <!--</div>-->
-      <!--</div>-->
     </div>
 
     <div class="col-md-4 col-sm-4 we-box">

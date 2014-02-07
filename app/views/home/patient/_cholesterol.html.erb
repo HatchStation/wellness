@@ -1,0 +1,83 @@
+
+<% tri = biometrics['tri']['value'].to_i %>
+<% hdl = biometrics['hdl']['value'].to_i %>
+<% ldl = biometrics['ldl']['value'].to_i %>
+<% total_cholesterol = (tri/5) + (ldl + hdl) %>
+
+<div class="box cholesterol">
+  <div class="we-title">
+    Cholesterol
+  </div>
+  <div class="we-content">
+    <div class="row">
+      <div class="col-sm-6 col-xs-6 col-md-6" style="font-size: 16px;">
+        total
+      </div>
+      <div class="col-sm-6 col-xs-6 col-md-6">
+        <div class="pull-right">
+          <span style="font-size: 30px; color: #ffae00">
+           <%= total_cholesterol %>
+          </span>
+          mg/dl
+        </div>
+      </div>
+    </div>
+
+    <div class="row chol-units">
+      <div class="col-sm-4 col-xs-12 col-md-4">
+        LDL
+        <div>
+          <span>
+            <%= ldl %>
+          </span>
+          mg/dl
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12 col-md-4">
+        HDL
+        <div>
+          <span>
+            <%= hdl %>
+          </span>
+          mg/dl
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12 col-md-4">
+        TRI
+        <div>
+          <span>
+            <%= tri %>
+          </span>
+          mg/dl
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row">
+      <div class="col-xs-12" style="font-weight: bold; font-size: 16px; margin: 10px;">TOTAL</div>
+
+      <div class="col-xs-12 col-md-12" style="text-align: center;">
+        <span style=" font-size: 30px; color: #ffae00">
+          <%= total_cholesterol %>
+        </span>
+        mg/dl
+      </div>
+
+      <div class="col-xs-12 col-md-12 chol-prog">
+        <div class="progress">
+
+          <div class="progress-bar progress-bar-success" style="width: 20%">
+          </div>
+
+          <div class="progress-bar progress-bar-warning" style="width: 60%">
+          </div>
+
+          <div class="progress-bar progress-bar-danger" style="width: 20%">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
