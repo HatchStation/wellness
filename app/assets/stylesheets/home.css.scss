@@ -12,6 +12,7 @@
     background: white;
     text-align: center;
     padding: 12px;
+    color: #a1a1a1;
   }
   .we-content{
     min-height: 20px;
@@ -38,6 +39,8 @@
   .progress{
     height: 10px;
     margin: 0;
+    border: none;
+    border-radius: 0;
   }
   .box{
     margin: 5px 0;
@@ -99,9 +102,10 @@
   }
   .chol-units{
     div{
-      font-size: 13px;
+      font-size: 14px;
       font-weight: bold;
       border-right: solid 1px #ccc;
+      color: #a1a1a1;
       div{
         border-right: none;
         font-size: 12px;
@@ -118,6 +122,23 @@
   .chol-prog{
     .progress{
       height: 20px;
+
+    }
+  }
+}
+
+.we-fitness, .we-diet{
+  .f-title{
+    font-size: 1.25em;
+    line-height: 2em;
+    color: #B1B1B1;
+  }
+
+  .fd-qua{
+    font-size: 1.25em;
+    margin-top: 6px;
+    span{
+      font-size: 14px;
     }
   }
 }

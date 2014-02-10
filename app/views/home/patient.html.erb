@@ -9,7 +9,7 @@
 <% user = @patient[:user] %>
 <br>
   <div class="row">
-    <%= render partial: '/home/patient/profile', locals: {biometrics: biometrics, risks: risks, user: user} %>
+    <%= render partial: '/home/patient/profile', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
   </div>
 
   <div class="row">
@@ -19,7 +19,7 @@
   </div>
 
   <div class="row" style="color: #868686">
-    <%= render partial: '/home/patient/targets', locals: {biometrics: biometrics, risks: risks, user: user} %>
+    <%= render partial: '/home/patient/targets', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
   </div>
 
   <div class="row">
@@ -32,15 +32,15 @@
   <div class="row">
 
     <div class="col-md-4 col-sm-6 we-box">
-      <%= render partial: '/home/patient/fitness', locals: {biometrics: biometrics, risks: risks, user: user} %>
+      <%= render partial: '/home/patient/fitness', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 
     <div class="col-md-4 col-sm-6 we-box">
-      <%= render partial: '/home/patient/diet', locals: {biometrics: biometrics, risks: risks, user: user} %>
+      <%= render partial: '/home/patient/diet', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 
     <div class="col-md-4 col-sm-6 we-box">
-      <%= render partial: '/home/patient/weight_bmi', locals: {biometrics: biometrics, risks: risks, user: user} %>
+      <%= render partial: '/home/patient/weight_bmi', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 
   </div>
@@ -49,15 +49,15 @@
   <div class="row">
 
     <div class="col-md-4 col-sm-4 we-box">
-      <%= render partial: '/home/patient/cholesterol', locals: {biometrics: biometrics, risks: risks, user: user} %>
+      <%= render partial: '/home/patient/cholesterol', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 
     <div class="col-md-4 col-sm-4 we-box">
-      <%= render partial: '/home/patient/blood_sugar', locals: {biometrics: biometrics, risks: risks, user: user} %>
+      <%= render partial: '/home/patient/blood_sugar', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 
     <div class="col-md-4 col-sm-4 we-box">
-      <%= render partial: '/home/patient/blood_pressure', locals: {biometrics: biometrics, risks: risks, user: user} %>
+      <%= render partial: '/home/patient/blood_pressure', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 
   </div>

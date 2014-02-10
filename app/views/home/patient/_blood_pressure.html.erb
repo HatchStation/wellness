@@ -7,7 +7,7 @@
       <ul class="nav nav-tabs">
         <li class="active">
           <a href="#sys" data-toggle="tab" style="font-size: 12px; color: #CCCCCC; text-align: center">
-              <span style="font-size: 28px; color: #a9d248;">
+              <span style="font-size: 28px;" class="<%= we_colors[:bps_color] %>">
                 <%= biometrics['bps']['value'] %>
                 <i class="fa fa-chevron-down"></i>
               </span>
@@ -17,7 +17,7 @@
         </li>
         <li>
           <a href="#dias" data-toggle="tab" style="font-size: 12px; color: #CCCCCC; text-align: center">
-            <span style="font-size: 28px; color: #73c3c3;">
+            <span style="font-size: 28px;" class="<%= we_colors[:bpd_color] %>">
               <%= biometrics['bpd']['value'] %>
               <i class="fa fa-chevron-up"></i>
             </span>
@@ -30,7 +30,7 @@
       <div class="tab-content">
         <div id="sys" class="tab-pane active">
           <div class="box">
-            <div id="weight-chart"  class="center" style="height:250px;" ></div>
+            <div id="weight-chartxx"  class="center" style="height:250px;" ></div>
           </div>
         </div>
         <div id="dias" class="tab-pane">

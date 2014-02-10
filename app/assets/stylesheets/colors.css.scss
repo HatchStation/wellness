@@ -1,0 +1,55 @@
+$dell-blue: #0085C3;
+$dell-gray: #AAAAAA;
+$dell-green: #7AB800;
+$well-green: #a9d248;
+$dell-yellow: #F2AF00;
+$well-orange: #f28200;
+$dell-red: #DC5034;
+$dell-dark-red: #CE1126;
+$dell-berry: #B7295A;
+$dell-purple: #6E2585;
+$dell-teal: #71C6C1;
+$dell-periwinkle: #5482AB;
+$dell-aqua: #009BBB;
+$dell-dark-gray: #444444;
+$dell-light-gray: #EEEEEE;
+
+.well-green {
+  color: $dell-green !important;
+}
+
+.well-bg-green {
+  background: $dell-green !important;
+}
+
+.well-orange {
+  color: $well-orange !important;
+}
+
+.well-bg-orange {
+  background: $well-orange !important;
+}
+
+.well-yellow {
+  color: $dell-yellow !important;
+}
+
+.well-bg-yellow {
+  background: $dell-yellow !important;
+}
+
+.well-red{
+  color: $dell-red !important;
+}
+
+.well-bg-red{
+  background: $dell-red !important;
+}
+
+.well-blue {
+  color: $dell-aqua !important;
+}
+
+.well-white {
+  color: #ffffff !important;
+}

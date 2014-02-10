@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     username = "#{id}"
     upw = username
 
-    if eid && pw && username && upw
+    if id.to_i > 0
       bio_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}"))
       biometrics = downcase_hash(bio_hash)
       sleep 0.1
@@ -31,6 +31,74 @@ class HomeController < ApplicationController
       #user = {"entity_id"=>"16", "owner_ssn"=>"", "owner_unit_number"=>"0001", "owner_last_name"=>"Hojat", "owner_first_name"=>"12", "owner_mi"=>"", "owner_sex"=>"", "owner_date_of_birth"=>"0000-00-00 00:00:00", "owner_home_address"=>"", "owner_city"=>"", "owner_state"=>"", "owner_zip"=>"", "owner_home_phone"=>"", "owner_work_phone"=>"", "doctor_id"=>"P00001", "username"=>"12", "password"=>"Redacted"}
 
       @patient = { biometrics: biometrics, risks: risks, user: user }
+
+      hba1c = biometrics['h1c']['value'].to_i
+      if (4..6) === hba1c
+        hba1c_color = 'well-green'
+      elsif (6..8) === hba1c
+        hba1c_color = 'well-orange'
+      elsif (8..14) === hba1c
+        hba1c_color = 'well-red'
+      else
+        hba1c_color = 'well-white'
+      end
+
+      glucose_fasting = biometrics['gluc']['value'].to_i
+      if (80..100) === glucose_fasting
+        gluc_color = 'well-green'
+      elsif (101..125) === hba1c
+        gluc_color = 'well-orange'
+      elsif hba1c > 126
+        gluc_color = 'well-red'
+      else
+        gluc_color = 'well-white'
+      end
+
+
+      tri = biometrics['tri']['value'].to_i rescue 0
+      hdl = biometrics['hdl']['value'].to_i rescue 0
+      ldl = biometrics['ldl']['value'].to_i rescue 0
+      total_cholesterol = (tri/5) + (ldl + hdl)
+
+      if total_cholesterol <= 200
+        chol_color = 'well-green'
+      elsif (200..240) === total_cholesterol
+        chol_color = 'well-yellow'
+      elsif total_cholesterol > 240
+        chol_color = 'well-red'
+      else
+        chol_color = 'well-white'
+      end
+
+      systolic = biometrics['bps']['value'].to_i
+
+      if systolic <= 120
+        bps_color = 'well-green'
+      elsif (120..140) === systolic
+        bps_color = 'well-yellow'
+      elsif (140..160) === systolic
+        bps_color = 'well-orange'
+      elsif systolic > 160
+        bps_color = 'well-red'
+      else
+        bps_color = 'well-white'
+      end
+
+      diastolic = biometrics['bpd']['value'].to_i
+
+      if diastolic <= 80
+        bpd_color = 'well-green'
+      elsif (80..90) === diastolic
+        bpd_color = 'well-yellow'
+      elsif (90..100) === diastolic
+        bpd_color = 'well-orange'
+      elsif diastolic > 100
+        bpd_color = 'well-red'
+      else
+        bpd_color = 'well-white'
+      end
+
+      @colors = {hba1c_color: hba1c_color, gluc_color: gluc_color, chol_color: chol_color, bps_color: bps_color, bpd_color: bpd_color}
     else
      redirect_to root_path
     end
