@@ -31,15 +31,15 @@
 
   <div class="row">
 
-    <div class="col-md-4 col-sm-6 we-box">
+    <div class="col-md-3 col-sm-6 fitness we-box" style="">
       <%= render partial: '/home/patient/fitness', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 
-    <div class="col-md-4 col-sm-6 we-box">
+    <div class="col-md-3 col-sm-6 diet we-box" style="">
       <%= render partial: '/home/patient/diet', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 
-    <div class="col-md-4 col-sm-6 we-box">
+    <div class="col-md-3 col-sm-6 weight_bmi we-box" style="">
       <%= render partial: '/home/patient/weight_bmi', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 
@@ -48,15 +48,15 @@
 
   <div class="row">
 
-    <div class="col-md-4 col-sm-4 we-box">
+    <div class="col-md-4 col-sm-6 cholesterol we-box">
       <%= render partial: '/home/patient/cholesterol', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 
-    <div class="col-md-4 col-sm-4 we-box">
+    <div class="col-md-4 col-sm-6 blood_sugar we-box">
       <%= render partial: '/home/patient/blood_sugar', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 
-    <div class="col-md-4 col-sm-4 we-box">
+    <div class="col-md-4 col-sm-6 blood_pressure we-box">
       <%= render partial: '/home/patient/blood_pressure', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
     </div>
 

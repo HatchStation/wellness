@@ -96,7 +96,7 @@
   }
 }
 
-.cholesterol{
+.we-cholesterol{
   hr{
     margin: 0;
   }
@@ -152,6 +152,8 @@
 ====================================================================== */
 @media only screen and (min-width: 980px) and (max-width: 1199px) {
 
+
+
 }
 /* Higher than 980 (desktop devices)
 ====================================================================== */
@@ -160,6 +162,24 @@
     width: 25%;
     margin-top: 13px;
     margin-left: 250px;
+  }
+
+  .we-image {
+    div {
+      margin-left: 18%;
+    }
+  }
+
+  .fitness, .cholesterol{
+    margin-left: 5%;
+  }
+
+  .fitness, .diet, .weight_bmi, .cholesterol, .blood_sugar, .blood_pressure {
+    width: 30%;
+  }
+
+  .height_weight, .depression_medication{
+    width: 27%
   }
 
 }
