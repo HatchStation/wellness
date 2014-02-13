@@ -34,3 +34,12 @@
 //= stub jquery-1.10.2.min
 
 
+
+
+$(document).ready(function () {
+
+  var id = params['id'];
+  $('#fitness_partial').load('/home/fitness?id=' + id);
+  $('#diet_partial').load('/home/diet?id=' + id);
+
+});

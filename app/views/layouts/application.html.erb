@@ -14,6 +14,8 @@
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 
+
+
   <!--[if lt IE 9 ]>
     <link href="assets/style-ie.css" rel="stylesheet">
   <![endif]-->
@@ -85,6 +87,10 @@
 </script>
 
 <![endif]-->
+
+<%= javascript_tag do %>
+  var params = <%= raw params.to_json %>;
+<% end %>
 
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>

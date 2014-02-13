@@ -13,6 +13,7 @@
     text-align: center;
     padding: 12px;
     color: #a1a1a1;
+    font-size: 1.5em;
   }
   .we-content{
     min-height: 20px;
@@ -41,6 +42,9 @@
     margin: 0;
     border: none;
     border-radius: 0;
+    .progress-bar {
+      box-shadow: none;
+    }
   }
   .box{
     margin: 5px 0;

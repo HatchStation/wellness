@@ -32,11 +32,15 @@
   <div class="row">
 
     <div class="col-md-3 col-sm-6 fitness we-box" style="">
-      <%= render partial: '/home/patient/fitness', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
+      <div id="fitness_partial">
+        <%= render partial: '/home/patient/fitness' %>
+      </div>
     </div>
 
     <div class="col-md-3 col-sm-6 diet we-box" style="">
-      <%= render partial: '/home/patient/diet', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
+      <div id="diet_partial">
+        <%= render partial: '/home/patient/diet' %>
+      </div>
     </div>
 
     <div class="col-md-3 col-sm-6 weight_bmi we-box" style="">

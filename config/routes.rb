@@ -4,6 +4,8 @@ Wellness::Application.routes.draw do
   resources :home do
     collection do
       get 'patient'
+      get 'fitness'
+      get 'diet'
     end
   end
 
