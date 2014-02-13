@@ -6,6 +6,7 @@ Wellness::Application.routes.draw do
       get 'patient'
       get 'fitness'
       get 'diet'
+      get 'risks'
     end
   end
 

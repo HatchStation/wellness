@@ -62,24 +62,58 @@
         </div>
       </div>
     </div>
-    <!--</div>-->
-    <!--<div class="row">-->
+
+    <% if risks['smoking'] %>
+      <% smoke = risks['smoking'].to_i %>
+      <% if smoke == 0 || smoke == 1 %>
+      <% smoking_status = 'Non Smoker / Never Smoked'  %>
+      <% smoking_class = 'well-green' %>
+      <% elsif smoke == 2 %>
+        <% smoking_status = 'Past-Smoker / Recently Quit'  %>
+        <% smoking_class = 'well-yellow' %>
+      <% elsif smoke == 3 %>
+        <% smoking_status = 'Current Smoker'  %>
+        <% smoking_class = 'well-red' %>
+      <% else %>
+        <% smoking_class = '' %>
+        <% smoking_status = 'NA' %>
+      <% end %>
+    <% else %>
+      <% smoking_class = '' %>
+      <% smoking_status = 'NA' %>
+    <% end %>
+
     <div class="col-md-12 col-sm-12 col-xs-12 we-box">
       <div class="box smoke-status">
         <div class="we-title">
           Smoking Status
         </div>
         <div class="we-content">
-              <span>
-                Non-smoker
-              </span>
+          <span class="<%= smoking_class %>">
+            <%= smoking_status %>
+          </span>
         </div>
       </div>
     </div>
   </div>
-
 </div>
 
+<% if risks['depression'] %>
+   <% depress = risks['depression'].to_i  %>
+  <% if depress == 0 %>
+    <% depression_status = 'Inactive' %>
+    <% depression_class = 'well-green' %>
+  <% elsif depress == 1 %>
+    <% depression_status = 'Active' %>
+    <% depression_class = 'well-yellow' %>
+  <% else %>
+    <% depression_status = 'NA' %>
+    <% depression_class = '' %>
+  <% end %>
+<% else %>
+  <% depression_status = 'NA' %>
+  <% depression_class = '' %>
+<% end %>
 <div class="col-md-3 col-sm-12 col-xs-12 depression_medication" style="min-width: 209px;">
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12 we-box">
@@ -88,10 +122,9 @@
           depression
         </div>
         <div class="we-content">
-              <span>
-                <!--Inactive-->
-                <%= risks['depression'].to_i == 0 ? 'Inactive' : 'Active' %>
-              </span>
+          <span class="<%= depression_class %>">
+            <%= depression_status %>
+          </span>
         </div>
       </div>
     </div>
