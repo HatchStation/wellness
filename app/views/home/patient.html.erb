@@ -19,7 +19,9 @@
   </div>
 
   <div class="row" style="color: #868686">
-    <%= render partial: '/home/patient/targets', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
+    <div id="targets_partial">
+      <%= render partial: '/home/patient/targets', locals: {targets: {}} %>
+    </div>
   </div>
 
   <div class="row">

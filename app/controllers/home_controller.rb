@@ -247,10 +247,25 @@ class HomeController < ApplicationController
       eid = "P#{id}"
       pw = "PW#{id}"
       medication = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getmedications&eid=#{eid}&pw=#{pw}"))
+      #medication = [{"Medication_Name"=>"Minodidil 10 MG"}, {"Medication_Name"=>"Pharmapan 30 MG"}, {"Medication_Name"=>"Obligupet Powder"}]
     else
       medication = []
     end
     render partial: '/home/patient/medication', locals: { medications: medication }
+  end
+
+  def targets
+    id = params[:id].to_i
+    if id && id > 0
+      eid = "P#{id}"
+      pw = "PW#{id}"
+      targets = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=gettargets&eid=#{eid}&pw=#{pw}"))
+      #targets = {"Minutes"=>90, "BP"=>1, "WGHT"=>1, "Fruit"=>4, "Veg"=>4}
+    else
+      targets = {}
+    end
+    render partial: '/home/patient/targets', locals: { targets: targets }
+    #targets = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=gettargets&eid=P1&pw=PW1"))
   end
 
   def risks

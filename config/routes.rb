@@ -7,6 +7,7 @@ Wellness::Application.routes.draw do
       get 'diet'
       get 'medication'
       get 'risks'
+      get 'targets'
     end
   end
 

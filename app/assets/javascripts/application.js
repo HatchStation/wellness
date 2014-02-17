@@ -42,4 +42,5 @@ $(document).ready(function () {
   $('#fitness_partial').load('/home/fitness?id=' + id);
   $('#diet_partial').load('/home/diet?id=' + id);
   $('#medication_partial').load('/home/medication?id=' + id);
+  $('#targets_partial').load('/home/targets?id=' + id);
 });
