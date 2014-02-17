@@ -6,7 +6,7 @@
     <div>
       <ul style="list-style-type: none;text-align: left;">
         <% medications.each do |m|  %>
-          <li style="width: 100%;">
+          <li style="width: 100%;margin-left: -7%;text-align: center">
             <%= m['Medication_Name'].to_s.split(' ').join(' ') %>
           </li>
         <% end %>
