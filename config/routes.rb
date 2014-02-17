@@ -1,14 +1,16 @@
 Wellness::Application.routes.draw do
 
-
   resources :home do
     collection do
       get 'patient'
       get 'fitness'
       get 'diet'
+      get 'medication'
       get 'risks'
     end
   end
+
+  get '/patient/:id' => 'home#patient'
 
   get '/demo' => 'home#demo', as: 'demo'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -241,6 +241,18 @@ class HomeController < ApplicationController
     render partial: '/home/patient/diet', locals: { diet: diet, we_colors: colors }
   end
 
+  def medication
+    id = params[:id].to_i
+    if id && id > 0
+      eid = "P#{id}"
+      pw = "PW#{id}"
+      medication = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getmedications&eid=#{eid}&pw=#{pw}"))
+    else
+      medication = []
+    end
+    render partial: '/home/patient/medication', locals: { medications: medication }
+  end
+
   def risks
 
   end

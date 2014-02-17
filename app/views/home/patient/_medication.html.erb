@@ -1,0 +1,16 @@
+<div class="box medication">
+  <div class="we-title">
+    medication
+  </div>
+  <div class="we-content">
+    <div>
+      <ul style="list-style-type: none;text-align: left;">
+        <% medications.each do |m|  %>
+          <li style="width: 100%;">
+            <%= m['Medication_Name'].to_s.split(' ').join(' ') %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

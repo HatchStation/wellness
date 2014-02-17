@@ -47,7 +47,7 @@
                 <%#= biometrics['hght']['value'] %>
               <!--</span>-->
               <span>5</span>
-              th
+              ft
               <span>10</span>
               in
             </div>
@@ -130,15 +130,8 @@
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12 we-box">
-      <div class="box medication">
-        <div class="we-title">
-          medication
-        </div>
-        <div class="we-content">
-          <div>
-            Lipitor, Lasix
-          </div>
-        </div>
+      <div id="medication_partial">
+        <%= render partial: '/home/patient/medication', locals: {medications: []} %>
       </div>
     </div>
   </div>

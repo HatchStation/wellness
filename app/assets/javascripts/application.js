@@ -41,5 +41,5 @@ $(document).ready(function () {
   var id = params['id'];
   $('#fitness_partial').load('/home/fitness?id=' + id);
   $('#diet_partial').load('/home/diet?id=' + id);
-
+  $('#medication_partial').load('/home/medication?id=' + id);
 });
