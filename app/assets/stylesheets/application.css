@@ -23,3 +23,7 @@
  *= stub style-ie
  *= stub fullcalendar.print
  */
+
+body{
+  font-family: 'Lato', sans-serif, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

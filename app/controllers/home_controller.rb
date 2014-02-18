@@ -29,7 +29,7 @@ class HomeController < ApplicationController
       #biometrics = {"wght"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "hr"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "sys"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "dia"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "bmi"=>{"value"=>"3241", "date"=>"2014-02-05 00:00:00"}, "hght"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "age"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "gluc"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "percbf"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "ldl"=>{"value"=>"41", "date"=>"2014-02-05 00:00:00"}, "hdl"=>{"value"=>"142", "date"=>"2014-02-05 00:00:00"}, "metrate"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "fatmass"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "leanmass"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "tri"=>{"value"=>"142", "date"=>"2014-02-05 00:00:00"}, "bpd"=>{"value"=>"75", "date"=>"2014-01-21 00:00:00"}, "bps"=>{"value"=>"120", "date"=>"2014-01-21 00:00:00"}, "h1c"=>{"value"=>"4.81", "date"=>"2014-01-21 00:00:00"}}
       #risks =  {"entity_id"=>"P5", "date_assessed"=>"2014-01-21 00:00:00", "gendrisk"=>"0", "postmen"=>"0", "depression"=>"0", "agerisk"=>"2", "hxdiabetes"=>"0", "hypertri"=>"1", "hdlrisk"=>"1", "hscprrisk"=>"0", "bprisk"=>"2", "ethnicrisk"=>"0", "pcosrisk"=>"0", "physactrisk"=>"1", "obesityrisk"=>"1", "fruitrisk"=>"2", "meatrisk"=>"0", "dairyrisk"=>"1", "current_risk"=>"1", "smoking"=>"1"}
       #user = {"entity_id"=>"16", "owner_ssn"=>"", "owner_unit_number"=>"0001", "owner_last_name"=>"Hojat", "owner_first_name"=>"12", "owner_mi"=>"", "owner_sex"=>"", "owner_date_of_birth"=>"0000-00-00 00:00:00", "owner_home_address"=>"", "owner_city"=>"", "owner_state"=>"", "owner_zip"=>"", "owner_home_phone"=>"", "owner_work_phone"=>"", "doctor_id"=>"P00001", "username"=>"12", "password"=>"Redacted"}
-      #risks = {}
+
       @patient = { biometrics: biometrics, risks: risks, user: user }
 
       hba1c = biometrics['h1c']['value'].to_i
@@ -166,13 +166,13 @@ class HomeController < ApplicationController
       username = "#{id}"
       upw = username
 
-      d_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getservings&eid=#{eid}&pw=#{pw}&servdateafter=2013-2-2"))
-      diet_hash = d_hash.to_a.last.last
-      #diet_hash = ['aaa']
+      #d_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getservings&eid=#{eid}&pw=#{pw}&servdateafter=2013-2-2"))
+      #diet_hash = d_hash.to_a.last.last
+      diet_hash = ['aaa']
       if diet_hash.any?
 
-        diet = downcase_hash(diet_hash)
-        #diet = {"fruit"=>4, "veg"=>7, "dairy"=>4, "meat"=>8}
+        #diet = downcase_hash(diet_hash)
+        diet = {"fruit"=>4, "veg"=>7, "dairy"=>4, "meat"=>8}
 
         fruit = diet['fruit'].to_i
         if (0..2) === fruit
@@ -270,6 +270,10 @@ class HomeController < ApplicationController
     end
     render partial: '/home/patient/targets', locals: { targets: targets }
     #targets = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=gettargets&eid=P1&pw=PW1"))
+  end
+
+  def calendar
+    render partial: '/home/patient/calender'
   end
 
   def risks

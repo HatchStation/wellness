@@ -10,8 +10,17 @@
 <br>
   <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-6 we-image">
-      <div class="" style="text-align: center">
-        <%= image_tag '/assets/patient.png', style: 'width: 200px;' %>
+      <div class="" style="">
+        <div class="btn-toolbar " role="toolbar" style="margin-left: 20%;">
+          <%= image_tag '/assets/patient.png', style: 'width: 200px;' %>
+          <div class="btn-group stat-calender-tab" style="">
+            <!--<button type="button" class="btn btn-success">STATS</button>-->
+            <!--<button type="button" class="btn btn-success">CALENDAR</button>-->
+            <!--<br>-->
+            <a class="we-stat active" href="#">STATS</a>
+            <a class="we-cal" href="#">CALENDAR</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -37,60 +46,31 @@
     </div>
   </div>
 
-  <div class="row">
-    <div style="text-align: center; margin: 10px 0 0 0;">
-      <img alt="Dropshadow" src="/assets/dropshadow.png" style="width: 80%; height: 7px;">
-    </div>
+  <div id="stats_partial">
+    <%= render partial: '/home/patient/stats', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
   </div>
 
-  <div class="row" style="color: #868686">
-    <div id="targets_partial">
-      <%= render partial: '/home/patient/targets', locals: {targets: {}} %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div style="text-align: center; margin: 10px 0 0 0;">
-      <img alt="Dropshadow" src="/assets/dropshadow.png" style="width: 80%; height: 7px;">
-    </div>
-  </div>
-
-
-  <div class="row">
-
-    <!--<div class="col-md-3 col-sm-6 fitness we-box" style="">-->
-      <!--<div id="fitness_partial">-->
-        <%#= render partial: '/home/patient/fitness' %>
-      <!--</div>-->
-    <!--</div>-->
-
-    <div class="col-md-3 col-sm-6 diet we-box"  style="margin-left: 5%">
-      <div id="diet_partial">
-        <%= render partial: '/home/patient/diet' %>
-      </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 weight_bmi we-box" style="">
-      <%= render partial: '/home/patient/weight_bmi', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
-    </div>
-
-  </div>
-
-
-  <div class="row">
-
-    <div class="col-md-4 col-sm-6 cholesterol we-box">
-      <%= render partial: '/home/patient/cholesterol', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
-    </div>
-
-    <div class="col-md-4 col-sm-6 blood_sugar we-box">
-      <%= render partial: '/home/patient/blood_sugar', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
-    </div>
-
-    <div class="col-md-4 col-sm-6 blood_pressure we-box">
-      <%= render partial: '/home/patient/blood_pressure', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
-    </div>
-
-  </div>
+  <div id="calendar_partial"></div>
 
 </div>
+
+<script>
+
+  $('.we-stat').on('click', function(){
+    $(this).addClass('active');
+    $('.we-cal').removeClass('active');
+    $('#stats_partial').show();
+    $('#calendar_partial').html('');
+    return false
+  });
+
+  $('.we-cal').on('click', function(){
+    $(this).addClass('active');
+    $('.we-stat').removeClass('active');
+    $('#calendar_partial').load('/home/calendar');
+    $('#stats_partial').hide();
+    return false
+  });
+
+
+</script>

@@ -8,6 +8,8 @@ Wellness::Application.routes.draw do
       get 'medication'
       get 'risks'
       get 'targets'
+      get 'calendar'
+      get 'stats'
     end
   end
 

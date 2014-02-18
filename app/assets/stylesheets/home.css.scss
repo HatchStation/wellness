@@ -152,6 +152,41 @@
   }
 }
 
+
+
+.stat-calender-tab{
+  margin-left: auto;
+  width: 100%;
+  margin-right: auto;
+  margin-top: 20px;
+  .we-stat, .we-cal{
+    text-decoration: none;
+    background-color: #a9d248;
+    color: white;
+  }
+
+  .we-stat {
+    margin-left: 1%;
+    padding: 5% 12%;
+  }
+  .we-cal {
+    margin-left: -2%;
+    padding: 5% 5%;
+//    margin-left: -1%;
+  }
+  .we-stat.active, .we-cal.active {
+    border: #a9d248 solid 2px;
+    background: white;
+    color: #868686;
+  }
+  .we-stat.active{
+    padding: 4% 13%;
+  }
+  .we-cal.active{
+    padding: 4% 5%;
+  }
+}
+
 /* Higher than 1200 (desktop devices)
 ====================================================================== */
 @media (min-width: 1200px) {
@@ -173,10 +208,8 @@
     margin-left: 250px;
   }
 
-  .we-image {
-    div {
-      margin-left: 18%;
-    }
+  .we-image div:first-line {
+//    margin-left: 18%;
   }
 
   .fitness, .cholesterol{
@@ -195,6 +228,9 @@
 /* Higher than 768 (desktop devices and tablets)
 ====================================================================== */
 @media only screen and (min-width: 768px) {
+  .stat-calender-tab{
+//    margin-left: 20%; margin-top: 5%
+  }
 }
 /* Tablet Portrait (devices and browsers)
 ====================================================================== */
