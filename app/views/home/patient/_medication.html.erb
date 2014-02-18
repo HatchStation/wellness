@@ -5,8 +5,8 @@
   <div class="we-content">
     <div>
       <ul style="list-style-type: none;text-align: left;">
-        <% medications.each do |m|  %>
-          <li style="width: 100%;margin-left: -7%;text-align: center">
+        <% medications.each do |m| %>
+          <li style="width: 100%; margin-left: -7%;text-align: center">
             <%= m['Medication_Name'].to_s.split(' ').join(' ') %>
           </li>
         <% end %>
@@ -14,3 +14,18 @@
     </div>
   </div>
 </div>
+
+<script>
+//  var wt_ht = parseInt($('.height_weight').css('height'));
+//  var dep_ht = parseInt($('.depression_medication').css('height'));
+//
+    var wt_ht = $('.height_weight').outerHeight();
+    var dep_ht = $('.depression_medication').outerHeight();
+  while(wt_ht > dep_ht){
+    med = $('.medication .we-content');
+    med_ht =  parseInt(med.css('min-height')) + 10;
+    med.css('min-height', med_ht+'px');
+    wt_ht = $('.height_weight').outerHeight();
+    dep_ht = $('.depression_medication').outerHeight();
+  }
+</script>

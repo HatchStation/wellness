@@ -1,0 +1,27 @@
+<div class="box depression">
+  <% if risks['depression'] %>
+    <% depress = risks['depression'].to_i  %>
+    <% if depress == 0 %>
+      <% depression_status = 'Inactive' %>
+      <% depression_class = 'well-green' %>
+    <% elsif depress == 1 %>
+      <% depression_status = 'Active' %>
+      <% depression_class = 'well-yellow' %>
+    <% else %>
+      <% depression_status = 'NA' %>
+      <% depression_class = '' %>
+    <% end %>
+  <% else %>
+    <% depression_status = 'NA' %>
+    <% depression_class = '' %>
+  <% end %>
+
+  <div class="we-title">
+    depression
+  </div>
+  <div class="we-content">
+    <span class="<%= depression_class %>">
+      <%= depression_status %>
+    </span>
+  </div>
+</div>

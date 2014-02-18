@@ -9,7 +9,32 @@
 <% user = @patient[:user] %>
 <br>
   <div class="row">
-    <%= render partial: '/home/patient/profile', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
+    <div class="col-md-3 col-sm-6 col-xs-6 we-image">
+      <div class="" style="text-align: center">
+        <%= image_tag '/assets/patient.png', style: 'width: 200px;' %>
+      </div>
+    </div>
+
+    <div class="col-md-2 col-sm-6 col-xs-6 we-profile">
+      <%= render partial: '/home/patient/profile', locals: { user: user } %>
+    </div>
+
+    <div class="col-md-3 col-sm-12 col-xs-12 height_weight" style="min-width: 209px;">
+      <%= render partial: '/home/patient/height_weight', locals: { risks: risks, biometrics: biometrics } %>
+    </div>
+
+    <div class="col-md-3 col-sm-12 col-xs-12 depression_medication" style="min-width: 209px;">
+      <div class="row">
+
+
+        <div class="col-md-12 col-sm-12 col-xs-12 we-box">
+          <div id="medication_partial">
+            <%= render partial: '/home/patient/medication', locals: {medications: []} %>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <div class="row">
