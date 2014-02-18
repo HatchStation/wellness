@@ -62,12 +62,16 @@ class HomeController < ApplicationController
 
       if total_cholesterol <= 200
         chol_color = 'well-green'
+        cholesterol_level = 'Desirable'
       elsif (200..240) === total_cholesterol
         chol_color = 'well-yellow'
+        cholesterol_level = 'Borderline High'
       elsif total_cholesterol > 240
         chol_color = 'well-red'
+        cholesterol_level = 'High'
       else
         chol_color = 'well-white'
+        cholesterol_level = ''
       end
 
       systolic = biometrics['bps']['value'].to_i
@@ -98,7 +102,7 @@ class HomeController < ApplicationController
         bpd_color = 'well-white'
       end
 
-     @colors = { hba1c_color: hba1c_color, gluc_color: gluc_color, chol_color: chol_color, bps_color: bps_color, bpd_color: bpd_color }
+     @colors = { hba1c_color: hba1c_color, gluc_color: gluc_color, chol_color: chol_color, bps_color: bps_color, bpd_color: bpd_color, cholesterol_level: cholesterol_level }
     else
      redirect_to root_path
     end
