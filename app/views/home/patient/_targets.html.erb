@@ -1,44 +1,51 @@
-<div class="col-md-2 col-md-offset-1 col-sm-12 col-xs-12 we-target">
-  TARGETs
+<div class="col-md-1 col-md-offset-1 col-sm-12 col-xs-12 we-target">
+  TARGETS
   <i class="fa fa-pencil"></i>
 </div>
-<div class="col-md-1 col-sm-6 col-xs-12 we-target">
-      <span>
-        10,000
-      </span>
-  Steps/day
+<div class="col-md-2 col-sm-6 col-xs-12 we-target">
+  <span class="val">
+    <%= targets['Minutes'] %>
+  </span>
+  <span class="name">
+    active minutes/week
+  </span>
 </div>
 
 <div class="col-md-1 col-sm-6 col-xs-12 we-target">
-      <span>
-        5
-      </span>
-  Miles/day
+  <span class="val">
+  <%= targets['WGHT'] %>
+  </span>
+  <span class="name">
+    weight in weeks
+  </span>
 </div>
 
 <div class="col-md-2 col-sm-6 col-xs-12 we-target">
-      <span>
-        <%= targets['Minutes'] %>
-      </span>
-  Active minutes/day
-</div>
-<div class="col-md-1 col-sm-6 col-xs-12 we-target">
-      <span>
-        2,500
-      </span>
-  Calories/day
-</div>
-<div class="col-md-1 col-sm-6 col-xs-12 we-target">
-      <span>
-        <%= targets['BP'] %>
-      </span>
-  mg/dl
+  <span class="val">
+    <%= targets['BP'] %>
+  </span>
+  <span class="name">
+    blood pressure
+    measurements/week
+  </span>
 </div>
 
-<div class="col-md-1 col-sm-6 col-xs-12 we-target">
-      <span>
-        <%= targets['WGHT'] %>
-        <!--135-->
-      </span>
-  Pounds
+<div class="col-md-2 col-sm-6 col-xs-12 we-target">
+  <span class="val">
+    <%= targets['Fruit'] %>
+  </span>
+  <span class="name">
+    avg fruit
+    servings/day
+  </span>
+</div>
+
+<div class="col-md-2 col-sm-6 col-xs-12 we-target">
+  <span class="val">
+    <%= targets['Veg'] %>
+  </span>
+  <span class="name">
+    avg vegs
+    servings/day
+  </span>
 </div>

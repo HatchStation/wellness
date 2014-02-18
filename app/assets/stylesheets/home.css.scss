@@ -53,9 +53,14 @@
 
 .we-target{
   text-align: right;
-  span{
-    font-size: 20px;
+  span.val{
+    font-size: 22px;
     display: block;
+    color: #929292;
+  }
+  span.name{
+    font-size: 13px;
+    color: #B1B1B1;
   }
 }
 
