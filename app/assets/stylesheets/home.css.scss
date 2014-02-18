@@ -56,7 +56,7 @@
   span.val{
     font-size: 22px;
     display: block;
-    color: #929292;
+    color: #868686;;
   }
   span.name{
     font-size: 13px;
@@ -82,12 +82,13 @@
 }
 .ht-wt{
   text-align: center;
+  color: #868686;
   div {
-    font-size: 12px
+    font-size: 14px
   }
   div span{
     font-size: 25px;
-    font-weight: bold
+//    font-weight: bold
   }
 }
 .smoke-status, .depression{
