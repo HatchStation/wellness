@@ -13,7 +13,8 @@
 
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <script src="/assets/jquery.js"></script>
+  <!--<script src="/assets/jquery.js"></script>-->
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
 
 
@@ -63,13 +64,13 @@
 <!-- start: JavaScript-->
 <!--[if !IE]>-->
 
-<script src="/assets/jquery-2.0.3.min.js"></script>
+<!--<script src="/assets/jquery-2.0.3.min.js"></script>-->
 
 <!--<![endif]-->
 
 <!--[if IE]>
 
-<script src="assets/jquery-1.10.2.min.js"></script>
+<!--<script src="assets/jquery-1.10.2.min.js"></script>-->
 
 <![endif]-->
 
@@ -93,6 +94,5 @@
   var params = <%= raw params.to_json %>;
 <% end %>
 
-<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>
 </html>
