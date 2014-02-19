@@ -56,21 +56,29 @@
 
 <script>
 
-  $('.we-stat').on('click', function(){
-    $(this).addClass('active');
-    $('.we-cal').removeClass('active');
-    $('#stats_partial').show();
-    $('#calendar_partial').html('');
-    return false
-  });
+  $(function () {
+    $('.we-stat').on('click', function(e){
+      e.preventDefault();
+      $(this).addClass('active');
+      $('.we-cal').removeClass('active');
+      $('#stats_partial').show();
+      $('#calendar_partial').hide();
+      return false
+    });
 
-  $('.we-cal').on('click', function(){
-    $(this).addClass('active');
-    $('.we-stat').removeClass('active');
-    $('#calendar_partial').load('/home/calendar');
-    $('#stats_partial').hide();
-    return false
+    $('.we-cal').on('click', function(e){
+      e.preventDefault();
+      $(this).addClass('active');
+      $('.we-stat').removeClass('active');
+      cal = $('#calendar_partial');
+      if (cal.html() != ''){
+        cal.show();
+      } else {
+        cal.load('/home/calendar');
+      }
+      $('#stats_partial').hide();
+      return false
+    });
   });
-
 
 </script>
