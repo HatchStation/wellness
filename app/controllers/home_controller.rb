@@ -6,6 +6,20 @@ class HomeController < ApplicationController
 
   end
 
+  def dashboard
+    api = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getdoctorpatients&docid=P00001&username=test1&pw=test1"))
+    user = {}
+    @upcoming_patients = []
+    api.each do |id, patient|
+      if !patient['Nextappt'].nil? && patient['Nextappt'].any?
+        user['name'] = patient['Owner_First_Name']
+        user['Appointment_Date'] = patient['Nextappt'].first['Appointment_Date']
+        @upcoming_patients.push(user)
+        user = {}
+      end
+    end
+  end
+
   def patient
     id = params[:id]
 

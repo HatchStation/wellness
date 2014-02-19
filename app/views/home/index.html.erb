@@ -6,49 +6,7 @@
 
       <div class="row circleStats" style="min-width: 308px;">
 
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="circleStatsItem red">
-            <i class="fa  fa-thumbs-up"></i>
-            <span class="plus">+</span>
-            <span class="percent">%</span>
-            <input type="text" value="58" class="orangeCircle"/>
-          </div>
-          <div class="box-small-title">met the points goal</div>
-        </div>
-        <!--/col-->
-
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="circleStatsItem blue">
-            <i class="fa  fa-bullhorn"></i>
-            <span class="plus">+</span>
-            <span class="percent">%</span>
-            <input type="text" value="8" class="blueCircle"/>
-          </div>
-          <div class="box-small-title">met the steps goal</div>
-        </div>
-        <!--/col-->
-
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="circleStatsItem yellow">
-            <i class="fa  fa-user"></i>
-            <span class="plus">+</span>
-            <span class="percent">%</span>
-            <input type="text" value="12" class="yellowCircle"/>
-          </div>
-          <div class="box-small-title">met the calorie goal</div>
-        </div>
-        <!--/col-->
-
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="circleStatsItem pink">
-            <i class="fa  fa-globe"></i>
-            <span class="plus">+</span>
-            <span class="percent">%</span>
-            <input type="text" value="23" class="pinkCircle"/>
-          </div>
-          <div class="box-small-title">met the distance goal</div>
-        </div>
-        <!--/col-->
+        <%= render partial: '/home/index/goals' %>
 
       </div>
       <!--/row-->
@@ -63,7 +21,9 @@
       <div class="row">
 
         <div class="col-md-6 col-sm-12">
-          <%= render partial: '/home/index/upcoming_patients' %>
+          <div id="upcoming_patients_partial">
+            <%= render partial: '/home/index/upcoming_patients' %>
+          </div>
         </div>
 
         <div class="col-md-6 col-sm-12">

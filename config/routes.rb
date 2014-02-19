@@ -10,6 +10,7 @@ Wellness::Application.routes.draw do
       get 'targets'
       get 'calendar'
       get 'stats'
+      get 'dashboard'
     end
   end
 

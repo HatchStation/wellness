@@ -43,4 +43,10 @@ $(document).ready(function () {
   $('#diet_partial').load('/home/diet?id=' + id);
   $('#medication_partial').load('/home/medication?id=' + id);
   $('#targets_partial').load('/home/targets?id=' + id);
+//  $('#upcoming_patients_partial').load('/home/dashboard');
+
+  $( document ).ready(function() {
+    $.get('/home/dashboard');
+  });
+
 });
