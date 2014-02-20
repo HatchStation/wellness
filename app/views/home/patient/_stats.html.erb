@@ -32,7 +32,9 @@
   </div>
 
   <div class="col-md-3 col-sm-6 weight_bmi we-box" style="">
-    <%= render partial: '/home/patient/weight_bmi', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
+    <div id="weight_bmi_partial">
+      <%= render partial: '/home/patient/weight_bmi' %>
+    </div>
   </div>
 
 </div>

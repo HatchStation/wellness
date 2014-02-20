@@ -11,6 +11,7 @@ Wellness::Application.routes.draw do
       get 'calendar'
       get 'stats'
       get 'dashboard'
+      get 'weight_bmi'
     end
   end
 

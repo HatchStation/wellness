@@ -31,11 +31,9 @@ class HomeController < ApplicationController
     if id.to_i > 0
       bio_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}"))
       biometrics = downcase_hash(bio_hash)
-      sleep 0.1
 
       risk_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getrisk&eid=#{eid}&pw=#{pw}"))
       risks = downcase_hash(risk_hash.first)
-      sleep 0.1
 
       user_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=retrieve&username=#{username}&pw=#{upw}"))
       user = downcase_hash(user_hash)
@@ -132,12 +130,9 @@ class HomeController < ApplicationController
 
       eid = "P#{id}"
       pw = "PW#{id}"
-      username = "#{id}"
-      upw = username
 
       fitness_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getactivities&eid=#{eid}&pw=#{pw}&startdate=2013-2-2&enddate=2013-10-10"))
       fitness = downcase_hash(fitness_hash)
-
       #fitness = {"minutes"=> 1, "calories"=> 5}
 
       minutes = fitness['minutes'].to_i
@@ -177,16 +172,14 @@ class HomeController < ApplicationController
 
       eid = "P#{id}"
       pw = "PW#{id}"
-      username = "#{id}"
-      upw = username
 
-      #d_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getservings&eid=#{eid}&pw=#{pw}&servdateafter=2013-2-2"))
-      #diet_hash = d_hash.to_a.last.last
-      diet_hash = ['aaa']
+      d_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getservings&eid=#{eid}&pw=#{pw}&servdateafter=2013-2-2"))
+      diet_hash = d_hash.to_a.last.last
+      #diet_hash = ['aaa']
       if diet_hash.any?
 
-        #diet = downcase_hash(diet_hash)
-        diet = {"fruit"=>4, "veg"=>7, "dairy"=>4, "meat"=>8}
+        diet = downcase_hash(diet_hash)
+        #diet = {"fruit"=>4, "veg"=>7, "dairy"=>4, "meat"=>8}
 
         fruit = diet['fruit'].to_i
         if (0..2) === fruit
@@ -284,6 +277,29 @@ class HomeController < ApplicationController
     end
     render partial: '/home/patient/targets', locals: { targets: targets }
     #targets = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=gettargets&eid=P1&pw=PW1"))
+  end
+
+  def weight_bmi
+    id = params[:id].to_i
+    weight_bmi = {}
+    if id && id > 0
+      eid = "P#{id}"
+      pw = "PW#{id}"
+      wt = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}&whichbio=WGHT")) rescue []
+      bmi = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}&whichbio=BMI")) rescue []
+      #wt = [{"Entity_ID"=>"P1", "Biometric_Name"=>"WGHT", "Biometric_Value"=>"135", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"A"}]
+      #bmi = [{"Entity_ID"=>"P1", "Biometric_Name"=>"BMI", "Biometric_Value"=>"47.81", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"A"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"BMI", "Biometric_Value"=>"49.1", "Biometric_Date"=>"2014-01-11 00:00:00", "Biometric_Source"=>"D"}]
+
+      if wt.any? && bmi.any?
+        weight_bmi['weight'] = wt.last['Biometric_Value']
+      end
+
+      if bmi.any?
+        weight_bmi['body_fat'] = bmi.last['Biometric_Value']
+      end
+    end
+    #weight_bmi = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=P1&pw=PW1&whichbio=WGHT"))
+    render partial: '/home/patient/weight_bmi', locals: { wt_bmi: weight_bmi }
   end
 
   def calendar
