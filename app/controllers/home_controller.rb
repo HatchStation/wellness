@@ -275,6 +275,7 @@ class HomeController < ApplicationController
 
       if wt.any?
         weight_bmi['weight'] = wt.last['Biometric_Value']
+        # Collecting data for plotting graph
         wt.each_with_index do |w, n|
           weight_data.push([n+1, w['Biometric_Value'].to_i])
         end
@@ -283,6 +284,7 @@ class HomeController < ApplicationController
 
       if bmi.any?
         weight_bmi['body_fat'] = bmi.last['Biometric_Value']
+        # Collecting data for plotting graph
         bmi.each_with_index do |b, n|
           bmi_data.push([n+1, b['Biometric_Value'].to_i])
         end
@@ -298,44 +300,49 @@ class HomeController < ApplicationController
       #h1c = [{"Entity_ID"=>"P1", "Biometric_Name"=>"h1c", "Biometric_Value"=>"4.51", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"h1c", "Biometric_Value"=>"7.08", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"h1c", "Biometric_Value"=>"5.72", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"h1c", "Biometric_Value"=>"6.15", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"h1c", "Biometric_Value"=>"6.37", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}]
       #gluc = [{"Entity_ID"=>"P1", "Biometric_Name"=>"GLUC", "Biometric_Value"=>"84", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"A"}]
 
-      hba1c = h1c.last['Biometric_Value'].to_i
-      blood_sugar['hba1c'] = hba1c
-      if (4..6) === hba1c
-        hba1c_color = 'well-green'
-      elsif (6..8) === hba1c
-        hba1c_color = 'well-orange'
-      elsif (8..14) === hba1c
-        hba1c_color = 'well-red'
-      else
-        hba1c_color = 'well-white'
-      end
-      blood_sugar['hba1c_color'] = hba1c_color
+      if h1c.any?
+        hba1c = h1c.last['Biometric_Value'].to_i
+        blood_sugar['hba1c'] = hba1c
+        if (4..6) === hba1c
+          hba1c_color = 'well-green'
+        elsif (6..8) === hba1c
+          hba1c_color = 'well-orange'
+        elsif (8..14) === hba1c
+          hba1c_color = 'well-red'
+        else
+          hba1c_color = 'well-white'
+        end
+        blood_sugar['hba1c_color'] = hba1c_color
 
-      glucose = gluc.last['Biometric_Value'].to_i
-      blood_sugar['glucose'] = glucose
-      if (80..100) === glucose
-        gluc_color = 'well-green'
-      elsif (101..125) === glucose
-        gluc_color = 'well-orange'
-      elsif glucose > 126
-        gluc_color = 'well-red'
-      else
-        gluc_color = 'well-white'
+        # Collecting data for plotting graph
+        h1c_data = []
+        h1c.each_with_index do |h, n|
+          h1c_data.push([n+1, h['Biometric_Value'].to_f])
+        end
+        blood_sugar['h1c_data'] = h1c_data
       end
-      blood_sugar['gluc_color'] = gluc_color
 
-      h1c_data = []
-      h1c.each_with_index do |h, n|
-        h1c_data.push([n+1, h['Biometric_Value'].to_f])
+      if gluc.any?
+        glucose = gluc.last['Biometric_Value'].to_i
+        blood_sugar['glucose'] = glucose
+        if (80..100) === glucose
+          gluc_color = 'well-green'
+        elsif (101..125) === glucose
+          gluc_color = 'well-orange'
+        elsif glucose > 126
+          gluc_color = 'well-red'
+        else
+          gluc_color = 'well-white'
+        end
+        blood_sugar['gluc_color'] = gluc_color
+
+        # Collecting data for plotting graph
+        gluc_data = []
+        gluc.each_with_index do |g, n|
+          gluc_data.push([n+1, g['Biometric_Value'].to_f])
+        end
+        blood_sugar['gluc_data'] = gluc_data
       end
-      blood_sugar['h1c_data'] = h1c_data
-
-      gluc_data = []
-      gluc.each_with_index do |g, n|
-        gluc_data.push([n+1, g['Biometric_Value'].to_f])
-      end
-      blood_sugar['gluc_data'] = gluc_data
-
       @blood_sugar = blood_sugar
       #raise @blood_sugar.inspect
     end
