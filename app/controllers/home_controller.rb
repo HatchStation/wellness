@@ -30,13 +30,13 @@ class HomeController < ApplicationController
     upw = username
 
     if id.to_i > 0
-      bio_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}"))
+      bio_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}")) rescue {}
       biometrics = downcase_hash(bio_hash)
 
-      risk_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getrisk&eid=#{eid}&pw=#{pw}"))
+      risk_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getrisk&eid=#{eid}&pw=#{pw}")) rescue {}
       risks = downcase_hash(risk_hash.first)
 
-      user_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=retrieve&username=#{username}&pw=#{upw}"))
+      user_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=retrieve&username=#{username}&pw=#{upw}")) rescue {}
       user = downcase_hash(user_hash)
 
       #biometrics = {"wght"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "hr"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "sys"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "dia"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "bmi"=>{"value"=>"3241", "date"=>"2014-02-05 00:00:00"}, "hght"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "age"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "gluc"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "percbf"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "ldl"=>{"value"=>"41", "date"=>"2014-02-05 00:00:00"}, "hdl"=>{"value"=>"142", "date"=>"2014-02-05 00:00:00"}, "metrate"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "fatmass"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "leanmass"=>{"value"=>"0", "date"=>"2014-02-05 00:00:00"}, "tri"=>{"value"=>"142", "date"=>"2014-02-05 00:00:00"}, "bpd"=>{"value"=>"75", "date"=>"2014-01-21 00:00:00"}, "bps"=>{"value"=>"120", "date"=>"2014-01-21 00:00:00"}, "h1c"=>{"value"=>"4.81", "date"=>"2014-01-21 00:00:00"}}
@@ -81,7 +81,7 @@ class HomeController < ApplicationController
       eid = "P#{id}"
       pw = "PW#{id}"
 
-      fitness_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getactivities&eid=#{eid}&pw=#{pw}&startdate=2013-2-2&enddate=2013-10-10"))
+      fitness_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getactivities&eid=#{eid}&pw=#{pw}&startdate=2013-2-2&enddate=2013-10-10")) rescue {}
       fitness = downcase_hash(fitness_hash)
       #fitness = {"minutes"=> 1, "calories"=> 5}
 
@@ -123,7 +123,7 @@ class HomeController < ApplicationController
       eid = "P#{id}"
       pw = "PW#{id}"
 
-      d_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getservings&eid=#{eid}&pw=#{pw}&servdateafter=2013-2-2"))
+      d_hash = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getservings&eid=#{eid}&pw=#{pw}&servdateafter=2013-2-2")) rescue {}
       diet_hash = d_hash.to_a.last.last
       #diet_hash = ['aaa']
       if diet_hash.any?
@@ -207,7 +207,7 @@ class HomeController < ApplicationController
     if id && id > 0
       eid = "P#{id}"
       pw = "PW#{id}"
-      medication = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getmedications&eid=#{eid}&pw=#{pw}"))
+      medication = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getmedications&eid=#{eid}&pw=#{pw}")) rescue []
       #medication = [{"Medication_Name"=>"Minodidil 10 MG"}, {"Medication_Name"=>"Pharmapan 30 MG"}, {"Medication_Name"=>"Obligupet Powder"}]
     else
       medication = []
@@ -220,7 +220,7 @@ class HomeController < ApplicationController
     if id && id > 0
       eid = "P#{id}"
       pw = "PW#{id}"
-      targets = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=gettargets&eid=#{eid}&pw=#{pw}"))
+      targets = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=gettargets&eid=#{eid}&pw=#{pw}")) rescue {}
       #targets = {"Minutes"=>90, "BP"=>1, "WGHT"=>1, "Fruit"=>4, "Veg"=>4}
     else
       targets = {}
