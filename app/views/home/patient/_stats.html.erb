@@ -53,7 +53,9 @@
   </div>
 
   <div class="col-md-4 col-sm-6 blood_pressure we-box">
-    <%= render partial: '/home/patient/blood_pressure', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
+    <div id="blood_pressure_partial">
+      <%= render partial: '/home/patient/blood_pressure', locals: { } %>
+    </div>
   </div>
 
 </div>

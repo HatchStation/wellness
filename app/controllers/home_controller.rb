@@ -8,6 +8,7 @@ class HomeController < ApplicationController
 
   def dashboard
     api = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getdoctorpatients&docid=P00001&username=test1&pw=test1")) rescue {}
+    #api = []
     user = {}
     @upcoming_patients = []
     api.each do |id, patient|
@@ -63,35 +64,7 @@ class HomeController < ApplicationController
         cholesterol_level = ''
       end
 
-      systolic = biometrics['bps']['value'].to_i
-
-      if systolic <= 120
-        bps_color = 'well-green'
-      elsif (120..140) === systolic
-        bps_color = 'well-yellow'
-      elsif (140..160) === systolic
-        bps_color = 'well-orange'
-      elsif systolic > 160
-        bps_color = 'well-red'
-      else
-        bps_color = 'well-white'
-      end
-
-      diastolic = biometrics['bpd']['value'].to_i
-
-      if diastolic <= 80
-        bpd_color = 'well-green'
-      elsif (80..90) === diastolic
-        bpd_color = 'well-yellow'
-      elsif (90..100) === diastolic
-        bpd_color = 'well-orange'
-      elsif diastolic > 100
-        bpd_color = 'well-red'
-      else
-        bpd_color = 'well-white'
-      end
-
-     @colors = { chol_color: chol_color, bps_color: bps_color, bpd_color: bpd_color, cholesterol_level: cholesterol_level }
+     @colors = { chol_color: chol_color, cholesterol_level: cholesterol_level }
     else
      redirect_to root_path
     end
@@ -262,6 +235,7 @@ class HomeController < ApplicationController
     bmi_data = []
     weight_data = []
     blood_sugar = {}
+    blood_pressure = {}
     if id && id > 0
       eid = "P#{id}"
       pw = "PW#{id}"
@@ -345,6 +319,67 @@ class HomeController < ApplicationController
       end
       @blood_sugar = blood_sugar
       #raise @blood_sugar.inspect
+
+
+      ## Blood Pressure Partial Logic ##
+
+      bps = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}&whichbio=bps")) rescue []
+      bpd = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}&whichbio=bpd")) rescue []
+      #bps = [{"Entity_ID"=>"P1", "Biometric_Name"=>"bps", "Biometric_Value"=>"130", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"bps", "Biometric_Value"=>"167", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"bps", "Biometric_Value"=>"98", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"bps", "Biometric_Value"=>"142", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"bps", "Biometric_Value"=>"126", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"bps", "Biometric_Value"=>"164", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}]
+      #bpd = [{"Entity_ID"=>"P1", "Biometric_Name"=>"bpd", "Biometric_Value"=>"88", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"bpd", "Biometric_Value"=>"94", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"bpd", "Biometric_Value"=>"62", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"bpd", "Biometric_Value"=>"105", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"bpd", "Biometric_Value"=>"72", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"bpd", "Biometric_Value"=>"103", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}]
+
+      if bps.any?
+        systolic = bps.last['Biometric_Value'].to_i
+        blood_pressure['systolic'] = systolic
+
+        if systolic <= 120
+          bps_color = 'well-green'
+        elsif (120..140) === systolic
+          bps_color = 'well-yellow'
+        elsif (140..160) === systolic
+          bps_color = 'well-orange'
+        elsif systolic > 160
+          bps_color = 'well-red'
+        else
+          bps_color = 'well-white'
+        end
+        blood_pressure['bps_color'] = bps_color
+
+        # Collecting data for plotting graph
+        bps_data = []
+        bps.each_with_index do |s, n|
+          bps_data.push([n+1, s['Biometric_Value'].to_i])
+        end
+        blood_pressure['bps_data'] = bps_data
+
+      end
+
+      if bpd.any?
+        diastolic = bpd.last['Biometric_Value'].to_i
+        blood_pressure['diastolic'] = diastolic
+
+        if diastolic <= 80
+          bpd_color = 'well-green'
+        elsif (80..90) === diastolic
+          bpd_color = 'well-yellow'
+        elsif (90..100) === diastolic
+          bpd_color = 'well-orange'
+        elsif diastolic > 100
+          bpd_color = 'well-red'
+        else
+          bpd_color = 'well-white'
+        end
+        blood_pressure['bpd_color'] = bpd_color
+
+        # Collecting data for plotting graph
+        bpd_data = []
+        bpd.each_with_index do |s, n|
+          bpd_data.push([n+1, s['Biometric_Value'].to_i])
+        end
+        blood_pressure['bpd_data'] = bpd_data
+      end
+
+      @blood_pressure = blood_pressure
     end
   end
 
