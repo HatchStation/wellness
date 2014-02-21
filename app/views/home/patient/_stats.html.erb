@@ -47,7 +47,9 @@
   </div>
 
   <div class="col-md-4 col-sm-6 blood_sugar we-box">
-    <%= render partial: '/home/patient/blood_sugar', locals: {biometrics: biometrics, risks: risks, user: user, we_colors: @colors} %>
+    <div id="blood_sugar_partial">
+      <%= render partial: '/home/patient/blood_sugar', locals: { } %>
+    </div>
   </div>
 
   <div class="col-md-4 col-sm-6 blood_pressure we-box">

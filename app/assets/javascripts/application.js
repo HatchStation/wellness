@@ -44,7 +44,8 @@ $(document).ready(function () {
   $('#medication_partial').load('/home/medication?id=' + id);
   $('#targets_partial').load('/home/targets?id=' + id);
 //  $('#upcoming_patients_partial').load('/home/dashboard');
-  $('#weight_bmi_partial').load('/home/weight_bmi?id=' + id);
+//  $('#weight_bmi_partial').load('/home/weight_bmi?id=' + id);
+  $.get('/home/flot_charts?id=' + id);
 
   $( document ).ready(function() {
     $.get('/home/dashboard');

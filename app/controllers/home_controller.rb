@@ -44,29 +44,6 @@ class HomeController < ApplicationController
 
       @patient = { biometrics: biometrics, risks: risks, user: user }
 
-      hba1c = biometrics['h1c']['value'].to_i
-      if (4..6) === hba1c
-        hba1c_color = 'well-green'
-      elsif (6..8) === hba1c
-        hba1c_color = 'well-orange'
-      elsif (8..14) === hba1c
-        hba1c_color = 'well-red'
-      else
-        hba1c_color = 'well-white'
-      end
-
-      glucose_fasting = biometrics['gluc']['value'].to_i
-      if (80..100) === glucose_fasting
-        gluc_color = 'well-green'
-      elsif (101..125) === hba1c
-        gluc_color = 'well-orange'
-      elsif hba1c > 126
-        gluc_color = 'well-red'
-      else
-        gluc_color = 'well-white'
-      end
-
-
       tri = biometrics['tri']['value'].to_i rescue 0
       hdl = biometrics['hdl']['value'].to_i rescue 0
       ldl = biometrics['ldl']['value'].to_i rescue 0
@@ -114,7 +91,7 @@ class HomeController < ApplicationController
         bpd_color = 'well-white'
       end
 
-     @colors = { hba1c_color: hba1c_color, gluc_color: gluc_color, chol_color: chol_color, bps_color: bps_color, bpd_color: bpd_color, cholesterol_level: cholesterol_level }
+     @colors = { chol_color: chol_color, bps_color: bps_color, bpd_color: bpd_color, cholesterol_level: cholesterol_level }
     else
      redirect_to root_path
     end
@@ -279,15 +256,18 @@ class HomeController < ApplicationController
     #targets = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=gettargets&eid=P1&pw=PW1"))
   end
 
-  def weight_bmi
+  def flot_charts
     id = params[:id].to_i
     weight_bmi = {}
     bmi_data = []
     weight_data = []
-
+    blood_sugar = {}
     if id && id > 0
       eid = "P#{id}"
       pw = "PW#{id}"
+
+      ## Weight and BMI Partial logic ##
+
       wt = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}&whichbio=WGHT")) rescue []
       bmi = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}&whichbio=BMI")) rescue []
       #wt = [{"Entity_ID"=>"P1", "Biometric_Name"=>"WGHT", "Biometric_Value"=>"135", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"A"}]
@@ -308,13 +288,57 @@ class HomeController < ApplicationController
         end
       end
       weight_bmi['bmi_data'] = bmi_data
+      @weight_bmi = weight_bmi
+
+
+      ## Blood Sugar Partial logic ##
+
+      h1c = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}&whichbio=h1c")) rescue []
+      gluc = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=#{eid}&pw=#{pw}&whichbio=GLUC")) rescue []
+      #h1c = [{"Entity_ID"=>"P1", "Biometric_Name"=>"h1c", "Biometric_Value"=>"4.51", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"h1c", "Biometric_Value"=>"7.08", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"h1c", "Biometric_Value"=>"5.72", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"h1c", "Biometric_Value"=>"6.15", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}, {"Entity_ID"=>"P1", "Biometric_Name"=>"h1c", "Biometric_Value"=>"6.37", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"V"}]
+      #gluc = [{"Entity_ID"=>"P1", "Biometric_Name"=>"GLUC", "Biometric_Value"=>"84", "Biometric_Date"=>"2014-01-21 00:00:00", "Biometric_Source"=>"A"}]
+
+      hba1c = h1c.last['Biometric_Value'].to_i
+      blood_sugar['hba1c'] = hba1c
+      if (4..6) === hba1c
+        hba1c_color = 'well-green'
+      elsif (6..8) === hba1c
+        hba1c_color = 'well-orange'
+      elsif (8..14) === hba1c
+        hba1c_color = 'well-red'
+      else
+        hba1c_color = 'well-white'
+      end
+      blood_sugar['hba1c_color'] = hba1c_color
+
+      glucose = gluc.last['Biometric_Value'].to_i
+      blood_sugar['glucose'] = glucose
+      if (80..100) === glucose
+        gluc_color = 'well-green'
+      elsif (101..125) === glucose
+        gluc_color = 'well-orange'
+      elsif glucose > 126
+        gluc_color = 'well-red'
+      else
+        gluc_color = 'well-white'
+      end
+      blood_sugar['gluc_color'] = gluc_color
+
+      h1c_data = []
+      h1c.each_with_index do |h, n|
+        h1c_data.push([n+1, h['Biometric_Value'].to_f])
+      end
+      blood_sugar['h1c_data'] = h1c_data
+
+      gluc_data = []
+      gluc.each_with_index do |g, n|
+        gluc_data.push([n+1, g['Biometric_Value'].to_f])
+      end
+      blood_sugar['gluc_data'] = gluc_data
+
+      @blood_sugar = blood_sugar
+      #raise @blood_sugar.inspect
     end
-    #bmi = JSON.load(open("http://www.xeossolutions.com/wellmed.php?action=getbiometrics&eid=P1&pw=PW1&whichbio=BMI"))
-    render partial: '/home/patient/weight_bmi', locals: { wt_bmi: weight_bmi, bmi_data: bmi_data, weight_data: weight_data }
-  end
-
-  def flot_charts
-
   end
 
   def calendar

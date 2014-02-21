@@ -1,4 +1,4 @@
-<%#= raise we_colors[:hba1c_color].inspect %>
+<% blood_sugar = (defined?(bld_sugar)) ? bld_sugar : {} %>
 <div class="box span4 we-blood-sugar" ontablet="span6" ondesktop="span4">
   <div class="we-title">
     Blood Sugar
@@ -9,8 +9,8 @@
         <li class="active">
 
           <a href="#hba1c" class="hba1c" data-toggle="tab" style="font-size: 14px; color: #a1a1a1; text-align: center">
-            <span style="font-size: 28px;" class="<%= we_colors[:hba1c_color] %>">
-              <%= biometrics['h1c']['value'] %>
+            <span style="font-size: 28px;" class="<%= blood_sugar['hba1c_color'] %>">
+              <%= blood_sugar['hba1c'] %>
               <i class="fa fa-chevron-down"></i>
             </span>
             <br>
@@ -19,8 +19,8 @@
         </li>
         <li>
           <a href="#fasting" data-toggle="tab" style="font-size: 14px; color: #a1a1a1; text-align: center">
-            <span style="font-size: 28px;" class="<%= we_colors[:gluc_color] %>">
-              <%= biometrics['gluc']['value'] %>
+            <span style="font-size: 28px;" class="<%= blood_sugar['gluc_color'] %>">
+              <%= blood_sugar['glucose'] %>
               <i class="fa fa-chevron-up"></i>
             </span>
             <br>
@@ -33,11 +33,11 @@
       <div class="tab-content">
         <div id="hba1c" class="tab-pane active">
           <div class="box">
-            <div id="blood_sugar_graph"  class="center" style="height:250px;" ></div>
+            <div id="hba1c_graph"  class="center" style="height:250px;width: 100%;" ></div>
           </div>
         </div>
         <div id="fasting" class="tab-pane">
-          <p>Other</p>
+          <div id="fasting_graph"  class="center" style="height:250px;width: 100%;" ></div>
         </div>
       </div>
 
@@ -46,3 +46,52 @@
   </div>
 </div>
 
+<script>
+  h1c_data = <%= blood_sugar['gluc_data'] %>;
+  gluc_data = <%= blood_sugar['h1c_data'] %>;
+  var data = [[1, 100], [2, 120], [3, 200], [4, 400], [5, 300]];
+//    console.log(h1c_data);
+//    console.log(gluc_data);
+
+  var hba1c_graph = $('#hba1c_graph');
+  var fasting_graph = $('#fasting_graph');
+
+  function h1c_gluc_graph(id, data){
+    $.plot(id, [{ data: data,  color: '#a9d248' }], {
+      series: {
+        lines: {
+          show: true,
+          lineWidth: 2
+        },
+        points: { show: true },
+        shadowSize: 2
+      },
+
+      grid: {
+        hoverable: true,
+        clickable: true,
+        tickColor: "#dddddd",
+        borderWidth: 0,
+        color: '#fff',
+        axisMargin: false
+      },
+      xaxis: {
+        tickLength: 0,
+        show: false,
+        tickDecimals: 0
+      },
+      yaxis: {
+        min: -1.2,
+        tickLength: 0,
+        font: { color: '#B1B1B1' },
+        tickDecimals: 0
+      }//,
+//      colors: ["#FA5833", "#2FABE9"]
+    });
+  }
+
+  h1c_gluc_graph(hba1c_graph, h1c_data);
+  h1c_gluc_graph(fasting_graph, gluc_data);
+//  h1c_gluc_graph(fasting_graph, data);
+
+</script>
