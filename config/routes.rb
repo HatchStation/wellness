@@ -12,6 +12,7 @@ Wellness::Application.routes.draw do
       get 'stats'
       get 'dashboard'
       get 'weight_bmi'
+      get 'flot_charts'
     end
   end
 
