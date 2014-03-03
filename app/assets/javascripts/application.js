@@ -47,8 +47,6 @@ $(document).ready(function () {
 //  $('#weight_bmi_partial').load('/home/weight_bmi?id=' + id);
   $.get('/home/flot_charts?id=' + id);
 
-  $( document ).ready(function() {
-    $.get('/home/dashboard');
-  });
+
 
 });
