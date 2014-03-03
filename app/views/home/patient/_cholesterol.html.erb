@@ -2,7 +2,8 @@
 <% tri = biometrics['tri']['value'].to_i rescue 0 %>
 <% hdl = biometrics['hdl']['value'].to_i rescue 0 %>
 <% ldl = biometrics['ldl']['value'].to_i rescue 0 %>
-<% total_cholesterol = (tri/5) + (ldl + hdl) %>
+<%# total_cholesterol = (tri/5) + (ldl + hdl) %>
+<% total_cholesterol = ldl + hdl %>
 
 <div class="box we-cholesterol">
   <div class="we-title">
@@ -74,6 +75,26 @@
 
           <div class="progress-bar well-bg-red chol_bar_3" style="width: 20%"></div>
 
+        </div>
+
+        <div class="progress">
+          <div class="progress-bar well-bg-white" style="width: 20%;color: #a1a1a1;">
+            <div class="pull-right">
+              200
+            </div>
+          </div>
+          <div class="progress-bar well-bg-white" style="width: 60%;color: #a1a1a1;">
+            <div class="progress">
+              <div class="progress-bar well-bg-white" style="width: 36%;color: #a1a1a1;">210</div>
+              <div class="progress-bar well-bg-white" style="width: 30%;color: #a1a1a1;">220</div>
+              <div class="progress-bar well-bg-white" style="width: 34%;color: #a1a1a1;">230</div>
+            </div>
+          </div>
+          <div class="progress-bar well-bg-white" style="width: 20%;color: #a1a1a1;">
+            <div class="pull-left">
+              240
+            </div>
+          </div>
         </div>
       </div>
     </div>
