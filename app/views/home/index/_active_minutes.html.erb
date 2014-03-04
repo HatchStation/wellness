@@ -1,0 +1,36 @@
+<div class="box">
+  <div class="box-header">
+    <h2>
+      active minutes
+    </h2>
+
+    <div class="box-icon">
+      <a class="min-week active" href="#">W</a>
+      <a class="min-month" href="#">M</a>
+    </div>
+  </div>
+  <div class="box-content">
+
+    <div class="row min-week-div">
+      <%= render partial: '/home/index/sub_act_min' %>
+    </div>
+
+    <div class="row min-month-div" style="display: none">
+      <%= render partial: '/home/index/sub_act_min' %>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+  $('.min-week').on('click', function(){
+     $('.min-week-div').show();
+    $('.min-month-div').hide();
+  });
+
+  $('.min-month').on('click', function(){
+    $('.min-week-div').hide();
+    $('.min-month-div').show();
+  });
+</script>

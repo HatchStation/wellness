@@ -1,3 +1,7 @@
 $('#upcoming_patients_partial').html('<%= escape_javascript render partial: '/home/index/upcoming_patients', locals: {patients: @result['upcoming_patients']} %>');
 
 $('#avg_blood_pressure_partial').html('<%= escape_javascript render partial: '/home/index/avg_blood_pressure', locals: {bld_pres: @result['blood_pressure']} %>');
+
+$('.min-week-div').html('<%= escape_javascript render partial: '/home/index/sub_act_min', locals: { act_min: @result['active_minutes_week'] } %>');
+
+$('.min-month-div').html('<%= escape_javascript render partial: '/home/index/sub_act_min', locals: { act_min: @result['active_minutes_month'] } %>');

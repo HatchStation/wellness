@@ -1,0 +1,39 @@
+<% if defined?(act_min) %>
+  <% active_minutes = act_min %>
+<% else %>
+  <% active_minutes = {} %>
+  <% active_minutes['actmovers'] = [] %>
+<% end %>
+
+<div class="col-sm-3">
+  <div class="row">
+    <div class="col-sm-12" style=" text-align: center;line-height: 15px;">
+      <h5 style="font-weight: bold;">AVG. ACTIVE MIN</h5>
+        <span style="font-size: 30px; color: #ffae00">
+          <%= active_minutes['avg_act_min'] %>
+        </span>
+      <br>
+      min
+      <br>
+    </div>
+  </div>
+
+</div>
+<div class="col-sm-9">
+  <h5 style="font-weight: bold; text-align: center;">Biggest Movers</h5>
+
+  <% active_minutes['actmovers'].each do |mover| %>
+    <div class="row" style="margin: 5px;">
+      <div class="col-xs-12 col-sm-7">
+        <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
+        <%= mover['name'] %>
+      </div>
+      <div class="col-xs-12 col-sm-3" style="color: #e75735">
+        <%= mover['amount'] %> min
+      </div>
+      <div class="col-xs-12 col-sm-2" style="color: #e75735">
+        <i class="fa fa-arrow-up" style="font-size: 18px;"></i>
+      </div>
+    </div>
+  <% end %>
+</div>
