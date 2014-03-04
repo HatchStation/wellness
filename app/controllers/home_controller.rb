@@ -97,18 +97,18 @@ class HomeController < ApplicationController
         minutes_color = 'well-bg-white'
       end
 
-      calories = fitness['calories'].to_i
-      if (0..2) === calories
-        calories_color = 'well-bg-red'
-      elsif (2..4) === calories
-        calories_color = 'well-bg-yellow'
-      elsif calories > 4
-        calories_color = 'well-bg-green'
-      else
-        calories_color = 'well-bg-white'
-      end
+      #calories = fitness['calories'].to_i
+      #if (0..2) === calories
+      #  calories_color = 'well-bg-red'
+      #elsif (2..4) === calories
+      #  calories_color = 'well-bg-yellow'
+      #elsif calories > 4
+      #  calories_color = 'well-bg-green'
+      #else
+      #  calories_color = 'well-bg-white'
+      #end
 
-      colors = { minutes_color: minutes_color, calories_color: calories_color }
+      colors = { minutes_color: minutes_color }
     else
       fitness = {}
       colors = {}
