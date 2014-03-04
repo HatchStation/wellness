@@ -39,13 +39,12 @@
 $(document).ready(function () {
 
   var id = params['id'];
-  $('#fitness_partial').load('/home/fitness?id=' + id);
-  $('#diet_partial').load('/home/diet?id=' + id);
-  $('#medication_partial').load('/home/medication?id=' + id);
-  $('#targets_partial').load('/home/targets?id=' + id);
+//  $('#fitness_partial').load('/home/fitness?id=' + id);
+//  $('#diet_partial').load('/home/diet?id=' + id);
+//  $('#medication_partial').load('/home/medication?id=' + id);
+//  $('#targets_partial').load('/home/targets?id=' + id);
 //  $('#upcoming_patients_partial').load('/home/dashboard');
-//  $('#weight_bmi_partial').load('/home/weight_bmi?id=' + id);
-  $.get('/home/flot_charts?id=' + id);
+//  $.get('/home/flot_charts?id=' + id);
 
 
 
