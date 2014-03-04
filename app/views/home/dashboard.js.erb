@@ -1,1 +1,3 @@
-$('#upcoming_patients_partial').html('<%= escape_javascript render partial: '/home/index/upcoming_patients', locals: {patients: @upcoming_patients} %>');
+$('#upcoming_patients_partial').html('<%= escape_javascript render partial: '/home/index/upcoming_patients', locals: {patients: @result['upcoming_patients']} %>');
+
+$('#avg_blood_pressure_partial').html('<%= escape_javascript render partial: '/home/index/avg_blood_pressure', locals: {bld_pres: @result['blood_pressure']} %>');
