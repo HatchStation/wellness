@@ -16,6 +16,7 @@ class HomeController < ApplicationController
     avg_bps = {}
     active_minutes_week = {}
     active_minutes_month = {}
+    blood_sugar = {}
     api.each do |id, patient|
       if patient.class == Hash && !patient['Nextappt'].nil? && patient['Nextappt'].any?
         user['name'] = patient['Owner_First_Name']
@@ -37,6 +38,10 @@ class HomeController < ApplicationController
     active_minutes_month['actmovers'] = api['monthactmovers']
     @result['active_minutes_week'] = active_minutes_week
     @result['active_minutes_month'] = active_minutes_month
+
+    blood_sugar['h1c'] = api['average']['h1c']
+    blood_sugar['gluc'] = api['average']['gluc']
+    @result['blood_sugar'] = blood_sugar
     #raise @result.inspect
   end
 

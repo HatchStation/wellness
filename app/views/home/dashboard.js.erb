@@ -5,3 +5,5 @@ $('#avg_blood_pressure_partial').html('<%= escape_javascript render partial: '/h
 $('.min-week-div').html('<%= escape_javascript render partial: '/home/index/sub_act_min', locals: { act_min: @result['active_minutes_week'] } %>');
 
 $('.min-month-div').html('<%= escape_javascript render partial: '/home/index/sub_act_min', locals: { act_min: @result['active_minutes_month'] } %>');
+
+$('#avg_blood_sugar_partial').html('<%= escape_javascript render partial: '/home/index/avg_blood_sugar', locals: { bld_sgr: @result['blood_sugar'] } %>');

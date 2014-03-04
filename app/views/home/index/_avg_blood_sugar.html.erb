@@ -1,9 +1,9 @@
-<% blood_pressure = (defined?(bld_pres)) ? bld_pres : {} %>
+<% blood_sugar = (defined?(bld_sgr)) ? bld_sgr : {} %>
 <div class="box">
   <div class="box-header">
     <h2>
       <!--<i class="fa fa-signal"></i><span class="break"></span>-->
-      blood pressure
+      blood sugar
     </h2>
 
     <div class="box-icon">
@@ -17,9 +17,9 @@
       <div class="col-sm-4">
         <div class="row">
           <div class="col-sm-12" style=" text-align: center;line-height: 15px;">
-            <h5 style="font-weight: bold;">AVG. SYSTOLIC</h5>
+            <h5 style="font-weight: bold;">HBA1C</h5>
               <span style="font-size: 30px; color: #ffae00">
-                <%= blood_pressure['sys'] %>
+                <%= blood_sugar['h1c'] %>
               </span>
             <br>
             mg/dl
@@ -29,9 +29,10 @@
 
         <div class="row">
           <div class="col-sm-12" style=" text-align: center;line-height: 15px;margin-top: 2%">
-            <h5 style="font-weight: bold;">AVG. DIASTOLIC</h5>
+            <h5 style="font-weight: bold;">FASTING
+            </h5>
               <span style="font-size: 30px; color: #a9d248">
-                <%= blood_pressure['dia'] %>
+                <%= blood_sugar['gluc'] %>
               </span>
             <br>
             mg/dl

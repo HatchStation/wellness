@@ -28,7 +28,6 @@
 
         <div class="col-md-6 col-sm-12">
           <%= render partial: '/home/index/active_minutes' %>
-          <%#= render partial: '/home/index/worst_performers' %>
         </div>
         <!--/col-->
 
@@ -49,6 +48,20 @@
 
       </div>
 
+      <div class="row">
+
+        <div class="col-md-6 col-sm-12">
+          <div id="avg_blood_sugar_partial">
+            <%= render partial: '/home/index/avg_blood_sugar' %>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <%= render partial: '/home/index/worst_performers' %>
+        </div>
+        <!--/col-->
+
+      </div>
 
 
     </div>
