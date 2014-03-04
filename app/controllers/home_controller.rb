@@ -12,7 +12,7 @@ class HomeController < ApplicationController
     user = {}
     @upcoming_patients = []
     api.each do |id, patient|
-      if !patient['Nextappt'].nil? && patient['Nextappt'].any?
+      if patient.class == Hash && !patient['Nextappt'].nil? && patient['Nextappt'].any?
         user['name'] = patient['Owner_First_Name']
         user['Appointment_Date'] = patient['Nextappt'].first['Appointment_Date']
         @upcoming_patients.push(user)
