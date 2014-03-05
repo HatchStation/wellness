@@ -1,43 +1,109 @@
+<% goals = (defined?(gls)) ? gls : {} %>
 <div class="col-md-3 col-sm-4 col-xs-6">
-  <div class="circleStatsItem red">
-    <i class="fa  fa-thumbs-up"></i>
-    <span class="plus">+</span>
+  <div class="circleStatsItem <%= goals['fitness'].to_i == 100 ? 'well-green' : 'well-yellow' %> ">
+    <i class="fa fa-thumbs-up"></i>
+    <%#= image_tag 'leaf.jpg' %>
+    <!--<span class="plus">+</span>-->
     <span class="percent">%</span>
-    <input type="text" value="58" class="orangeCircle"/>
+    <input type="text" value="<%= goals['fitness'] %>" class="fitness_goal"/>
   </div>
   <div class="box-small-title">met the points goal</div>
 </div>
 <!--/col-->
 
 <div class="col-md-3 col-sm-4 col-xs-6">
-  <div class="circleStatsItem blue">
+  <div class="circleStatsItem <%= goals['weight'].to_i == 100 ? 'well-green' : 'well-yellow' %>">
     <i class="fa  fa-bullhorn"></i>
-    <span class="plus">+</span>
+    <!--<span class="plus">+</span>-->
     <span class="percent">%</span>
-    <input type="text" value="8" class="blueCircle"/>
+    <input type="text" value="<%= goals['weight'] %>" class="weight_goal"/>
   </div>
   <div class="box-small-title">met the steps goal</div>
 </div>
 <!--/col-->
 
 <div class="col-md-3 col-sm-4 col-xs-6">
-  <div class="circleStatsItem yellow">
+  <div class="circleStatsItem <%= goals['bp'].to_i == 100 ? 'well-green' : 'well-yellow' %>">
     <i class="fa  fa-user"></i>
-    <span class="plus">+</span>
+    <!--<span class="plus">+</span>-->
     <span class="percent">%</span>
-    <input type="text" value="12" class="yellowCircle"/>
+    <input type="text" value="<%= goals['bp'] %>" class="blood_pressure_goal"/>
   </div>
   <div class="box-small-title">met the calorie goal</div>
 </div>
 <!--/col-->
 
 <div class="col-md-3 col-sm-4 col-xs-6">
-  <div class="circleStatsItem pink">
+  <div class="circleStatsItem <%= goals['servings'].to_i == 100 ? 'well-green' : 'well-yellow' %>">
     <i class="fa  fa-globe"></i>
-    <span class="plus">+</span>
+    <!--<span class="plus">+</span>-->
     <span class="percent">%</span>
-    <input type="text" value="23" class="pinkCircle"/>
+    <input type="text" value="<%= goals['servings'] %>" class="servings_goal"/>
   </div>
   <div class="box-small-title">met the distance goal</div>
 </div>
 <!--/col-->
+
+<script>
+
+
+  $(document).ready(function(){
+
+    if ($.browser.msie  && parseInt($.browser.version, 10) === 8) {
+
+    } else {
+
+      $(".fitness_goal").knob({
+        'min':0,
+        'max':100,
+        'readOnly': true,
+        'width': 200,
+        'height': 200,
+        'fgColor': '<%= goals['fitness'].to_i == 100 ? '#a9d248' : '#F2AF00' %>',
+        'dynamicDraw': true,
+        'thickness': 0.2,
+        'tickColorizeValues': true,
+        'skin':'tron'
+      });
+
+      $(".weight_goal").knob({
+        'min':0,
+        'max':100,
+        'readOnly': true,
+        'width': 200,
+        'height': 200,
+        'fgColor': '<%= goals['weight'].to_i == 100 ? '#a9d248' : '#F2AF00' %>',
+        'dynamicDraw': true,
+        'thickness': 0.2,
+        'tickColorizeValues': true,
+        'skin':'tron'
+      });
+
+      $(".blood_pressure_goal").knob({
+        'min':0,
+        'max':100,
+        'readOnly': true,
+        'width': 200,
+        'height': 200,
+        'fgColor': '<%= goals['bp'].to_i == 100 ? '#a9d248' : '#F2AF00' %>',
+        'dynamicDraw': true,
+        'thickness': 0.2,
+        'tickColorizeValues': true,
+        'skin':'tron'
+      });
+
+      $(".servings_goal").knob({
+        'min':0,
+        'max':100,
+        'readOnly': true,
+        'width': 200,
+        'height': 200,
+        'fgColor': '<%= goals['servings'].to_i == 100 ? '#a9d248' : '#F2AF00' %>',
+        'dynamicDraw': true,
+        'thickness': 0.2,
+        'tickColorizeValues': true,
+        'skin':'tron'
+      });
+    }
+  });
+</script>
