@@ -9,3 +9,5 @@ $('.min-month-div').html('<%= escape_javascript render partial: '/home/index/sub
 $('#avg_blood_sugar_partial').html('<%= escape_javascript render partial: '/home/index/avg_blood_sugar', locals: { bld_sgr: @result['blood_sugar'] } %>');
 
 $('#dashboard_goals_partial').html('<%= escape_javascript render partial: '/home/index/goals', locals: { gls: @result['goals'] } %>');
+
+$('#avg_weight_partial').html('<%= escape_javascript render partial: '/home/index/weight', locals: {  } %>');

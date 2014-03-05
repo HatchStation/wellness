@@ -2,7 +2,7 @@
   <div class="box-header">
     <h2>
       <!--<i class="fa fa-list"></i><span class="break"></span>-->
-      Weight
+      weight
     </h2>
 
     <div class="box-icon" style="width: 70px">
@@ -11,6 +11,62 @@
     </div>
   </div>
   <div class="box-content avg_wt_cont">
+
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-sm-12" style=" text-align: center;line-height: 15px;">
+            <h5 style="font-weight: bold;font-size: 15px;">AVG. WEIGHT</h5>
+              <span style="font-size: 30px; color: #555555">
+                197
+              </span>
+            lbs
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12" style=" text-align: center;line-height: 15px;margin-top: 2%">
+            <h5 style="font-weight: bold;font-size: 15px;">AVG. BODY FAT</h5>
+              <span style="font-size: 30px; color: #555555">
+                18.7%
+              </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12" style=" text-align: center;line-height: 15px;margin-top: 2%">
+            <h5 style="font-weight: bold;font-size: 15px;">AVG. BMI</h5>
+              <span style="font-size: 30px;" class="well-yellow">
+                20.7
+              </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-8">
+        <h5 style="font-weight: bold; text-align: center;font-size: 16px;">Biggest Movers</h5>
+        <div class="row">
+          <div class="col-xs-6" style="text-align: right; font-size: 15px;">
+            <%= link_to 'weight', '#', class: 'wt_toggle' %>
+          </div>
+          <div class="col-xs-6" style="text-align: left; font-size: 15px;">
+            <%= link_to 'bmi', '#', class: 'bmi_toggle', style: 'color: #E2E2E2' %>
+          </div>
+        </div>
+
+        <div class="avg_wt_movers">
+          <%= render partial: '/home/index/sub_avg_wt_bmi_toggle' %>
+        </div>
+
+        <div class="avg_bmi_movers" style="display: none">
+          <%= render partial: '/home/index/sub_avg_wt_bmi_toggle' %>
+        </div>
+
+      </div>
+    </div>
+
+
 
   </div>
 </div>
@@ -32,4 +88,20 @@
     $('.wt-week').removeClass('active');
     return false
   });
+
+  $('.wt_toggle').on('click', function(){
+    $('.avg_wt_movers').show();
+    $('.avg_bmi_movers').hide();
+    $('.bmi_toggle').css('color', '#E2E2E2');
+    $(this).css('color', '#646464;');
+    return false
+  });
+  $('.bmi_toggle').on('click', function(){
+    $('.avg_wt_movers').hide();
+    $('.avg_bmi_movers').show();
+    $('.wt_toggle').css('color', '#E2E2E2');
+    $(this).css('color', '#646464;');
+    return false
+  });
+
 </script>

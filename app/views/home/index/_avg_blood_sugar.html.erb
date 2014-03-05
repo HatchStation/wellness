@@ -17,7 +17,7 @@
       <div class="col-sm-4">
         <div class="row">
           <div class="col-sm-12" style=" text-align: center;line-height: 15px;">
-            <h5 style="font-weight: bold;">HBA1C</h5>
+            <h5 style="font-weight: bold; font-size: 15px;">HBA1C</h5>
               <span style="font-size: 30px; color: #ffae00">
                 <%= blood_sugar['h1c'] %>
               </span>
@@ -29,7 +29,7 @@
 
         <div class="row">
           <div class="col-sm-12" style=" text-align: center;line-height: 15px;margin-top: 2%">
-            <h5 style="font-weight: bold;">FASTING
+            <h5 style="font-weight: bold; font-size: 15px;">FASTING
             </h5>
               <span style="font-size: 30px; color: #a9d248">
                 <%= blood_sugar['gluc'] %>
@@ -42,37 +42,23 @@
 
       </div>
       <div class="col-sm-8">
-        <h5 style="font-weight: bold; text-align: center;">Biggest Movers</h5>
-
-        <div class="row" style="margin: 5px;">
-          <div class="col-xs-12 col-sm-7">
-            <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
-            Keer Yee
+        <h5 style="font-weight: bold; text-align: center;font-size: 16px">Biggest Movers</h5>
+        <% 5.times do  %>
+          <div class="row" style="margin: 5px;">
+            <div class="col-xs-12 col-sm-7">
+              <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
+              <span style="color: #555555">
+                Keer Yee
+              </span>
+            </div>
+            <div class="col-xs-12 col-sm-3" style="">
+              189/95
+            </div>
+            <div class="col-xs-12 col-sm-2" style="">
+              <span class="arrow-s" style="font-size:1em;"></span>
+            </div>
           </div>
-          <div class="col-xs-12 col-sm-3" style="color: #e75735">
-            <!--<span class="pull-right">-->
-            189/95
-            <!--</span>-->
-          </div>
-          <div class="col-xs-12 col-sm-2" style="color: #e75735">
-            <i class="fa fa-arrow-up" style="font-size: 18px;"></i>
-          </div>
-        </div>
-        <div class="row" style="margin: 0 5px;">
-          <div class="col-sm-7">
-            <img src="http://us.123rf.com/400wm/400/400/kjpargeter/kjpargeter1008/kjpargeter100800088/7663132-siluetas-de-personas-bailando-sobre-fondo-estrellado.jpg" width="25" height="25">
-            Jonathan j kim
-          </div>
-
-          <div class="col-sm-3" style="color: #ffae00">
-            143/87
-          </div>
-          <div class="col-sm-2" style="color: #ffae00">
-            <i class="fa fa-arrow-down" style="font-size: 18px;"></i>
-          </div>
-        </div>
-
-
+        <% end %>
       </div>
     </div>
 
