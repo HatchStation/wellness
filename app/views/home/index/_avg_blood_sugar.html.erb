@@ -70,10 +70,11 @@
     var bs_cnt_ht = $('.avg_bs_content').outerHeight();
     var pf_cnt_ht = $('.perf_cont').outerHeight();
     if (bs_cnt_ht > pf_cnt_ht) {
-      $('.perf_cont').css('min-height', bs_cnt_ht+'px');
+      $('.perf_cont').css('min-height', bs_cnt_ht + 'px');
     } else {
-      $('.avg_bs_content').css('min-height', pf_cnt_ht+'px');
+      $('.avg_bs_content').css('min-height', pf_cnt_ht + 'px');
     }
+    console.log('row3')
   }
   $(window).resize(row3_ht);
   row3_ht();

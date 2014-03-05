@@ -5,44 +5,61 @@
       performance
     </h2>
 
-    <div class="box-icon">
-      <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-      <!--<a href="#" class="btn-close"><i class="fa fa-times"></i></a>-->
+    <div class="box-icon" style="width: 115px;">
+      <a class="pf-week well-week active" href="#">Best</a>
+      <a class="pf-month well-month" href="#">Worst</a>
     </div>
   </div>
   <div class="box-content perf_cont">
 
-    <div class="row" style="margin: 0 5px;">
-      <div class="col-sm-6">
-        <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
-        Keer Yee
+    <% 5.times do %>
+      <div class="row" style="margin: 0 5px;">
+        <div class="col-sm-6">
+          <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
+          Keer Yee
+        </div>
+        <div class="col-sm-4">
+          <div class="performance_bar"></div>
+        </div>
+        <div class="col-sm-2" style="font-weight: bold; font-size: 18px; color: #B1B1B1">
+          4/9/14
+        </div>
       </div>
-      <div class="col-sm-2">
-                  <span class="pull-right">
-                    9:10
-                  </span>
-      </div>
-      <div class="col-sm-4">
-        |
-        Check-up
-      </div>
-    </div>
-
-    <div class="row" style="margin: 0 5px;">
-      <div class="col-sm-6">
-        <img src="http://us.123rf.com/400wm/400/400/kjpargeter/kjpargeter1008/kjpargeter100800088/7663132-siluetas-de-personas-bailando-sobre-fondo-estrellado.jpg" width="25" height="25">
-        Jonathan j kim
-      </div>
-      <div class="col-sm-2">
-                  <span class="pull-right">
-                    10:30
-                  </span>
-      </div>
-      <div class="col-sm-4">
-        |
-        Urgent
-      </div>
-    </div>
-
+    <% end %>
   </div>
 </div>
+
+
+<style>
+  .pf-month.active{
+    padding: 4% 9%;
+  }
+
+  .performance_bar{
+    padding: 8%;
+    margin: 5% 0;
+    background: -webkit-linear-gradient(left, #F2AF00 , #a9d248); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #F2AF00, #a9d248); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #F2AF00, #a9d248); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #F2AF00 , #a9d248); /* Standard syntax */
+    height: 20px !important;
+  }
+</style>
+
+<script>
+  $('.pf-week').on('click', function(){
+//    $('.pf-week-div').show();
+//    $('.pf-month-div').hide();
+    $(this).addClass('active');
+    $('.pf-month').removeClass('active');
+    return false
+  });
+
+  $('.pf-month').on('click', function(){
+//    $('.pf-week-div').hide();
+//    $('.pf-month-div').show();
+    $(this).addClass('active');
+    $('.pf-week').removeClass('active');
+    return false
+  });
+</script>

@@ -11,3 +11,6 @@ $('#avg_blood_sugar_partial').html('<%= escape_javascript render partial: '/home
 $('#dashboard_goals_partial').html('<%= escape_javascript render partial: '/home/index/goals', locals: { gls: @result['goals'] } %>');
 
 $('#avg_weight_partial').html('<%= escape_javascript render partial: '/home/index/weight', locals: {  } %>');
+
+$('#performance_partial').html('<%= escape_javascript render partial: '/home/index/performers', locals: {  } %>');
+
