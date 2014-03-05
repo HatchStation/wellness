@@ -1,9 +1,7 @@
 <% goals = (defined?(gls)) ? gls : {} %>
 <div class="col-md-3 col-sm-4 col-xs-6">
   <div class="circleStatsItem <%= goals['fitness'].to_i == 100 ? 'well-green' : 'well-yellow' %> ">
-    <i class="fa fa-thumbs-up"></i>
-    <%#= image_tag 'leaf.jpg' %>
-    <!--<span class="plus">+</span>-->
+    <i class="fa fa-leaf"></i>
     <span class="percent">%</span>
     <input type="text" value="<%= goals['fitness'] %>" class="fitness_goal"/>
   </div>
@@ -13,8 +11,7 @@
 
 <div class="col-md-3 col-sm-4 col-xs-6">
   <div class="circleStatsItem <%= goals['weight'].to_i == 100 ? 'well-green' : 'well-yellow' %>">
-    <i class="fa  fa-bullhorn"></i>
-    <!--<span class="plus">+</span>-->
+    <i class="fa fa-heart"></i>
     <span class="percent">%</span>
     <input type="text" value="<%= goals['weight'] %>" class="weight_goal"/>
   </div>
@@ -24,8 +21,7 @@
 
 <div class="col-md-3 col-sm-4 col-xs-6">
   <div class="circleStatsItem <%= goals['bp'].to_i == 100 ? 'well-green' : 'well-yellow' %>">
-    <i class="fa  fa-user"></i>
-    <!--<span class="plus">+</span>-->
+    <i class="fa fa-fire"></i>
     <span class="percent">%</span>
     <input type="text" value="<%= goals['bp'] %>" class="blood_pressure_goal"/>
   </div>
@@ -35,8 +31,7 @@
 
 <div class="col-md-3 col-sm-4 col-xs-6">
   <div class="circleStatsItem <%= goals['servings'].to_i == 100 ? 'well-green' : 'well-yellow' %>">
-    <i class="fa  fa-globe"></i>
-    <!--<span class="plus">+</span>-->
+    <i class="fa fa-location-arrow"></i>
     <span class="percent">%</span>
     <input type="text" value="<%= goals['servings'] %>" class="servings_goal"/>
   </div>
@@ -107,3 +102,10 @@
     }
   });
 </script>
+
+<style>
+  .box-small-title {
+    font-weight: bold;
+    font-size: 20px;
+  }
+</style>
