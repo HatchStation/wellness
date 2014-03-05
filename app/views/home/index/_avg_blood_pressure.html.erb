@@ -12,56 +12,12 @@
     </div>
   </div>
   <div class="box-content avg_bp_cont">
-
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="row">
-          <div class="col-sm-12" style=" text-align: center;line-height: 15px;">
-            <h5 style="font-weight: bold;font-size: 15px;">AVG. SYSTOLIC</h5>
-              <span style="font-size: 30px; color: #ffae00">
-                <%= blood_pressure['sys'] %>
-              </span>
-            <br>
-            mg/dl
-            <br>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-12" style=" text-align: center;line-height: 15px;margin-top: 2%">
-            <h5 style="font-weight: bold;font-size: 15px;">AVG. DIASTOLIC</h5>
-              <span style="font-size: 30px; color: #a9d248">
-                <%= blood_pressure['dia'] %>
-              </span>
-            <br>
-            mg/dl
-            <br>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-sm-8">
-        <h5 style="font-weight: bold; text-align: center;font-size: 16px;">Biggest Movers</h5>
-        <% 5.times do  %>
-          <div class="row" style="margin: 5px;">
-            <div class="col-xs-12 col-sm-7">
-              <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
-              <span style="color: #555555;">
-                Keer Yee
-              </span>
-            </div>
-            <div class="col-xs-12 col-sm-3" style="">
-              189/95
-            </div>
-            <div class="col-xs-12 col-sm-2" style="color: #e75735">
-              <!--<i class="fa fa-arrow-up" style="font-size: 18px;"></i>-->
-              <span class="arrow-n" style="font-size:1em;"></span>
-            </div>
-          </div>
-        <% end %>
-      </div>
+    <div class="avg_bp_weekly">
+      <%= render partial: '/home/index/sub_avg_blood_pressure', locals: {blood_pressure: blood_pressure} %>
     </div>
-
+    <div class="avg_bp_monthly" style="display: none">
+      <%= render partial: '/home/index/sub_avg_blood_pressure', locals: {blood_pressure: blood_pressure} %>
+    </div>
   </div>
 </div>
 
@@ -74,21 +30,22 @@
     } else {
       $('.avg_bp_cont').css('min-height', wt_cnt_ht+'px');
     }
+    console.log('row2')
   }
-  $(window).resize(row2_ht);
+//  $(window).resize(row2_ht);
   row2_ht();
 
   $('.bp-week').on('click', function(){
-//    $('.bp-week-div').show();
-//    $('.bp-month-div').hide();
+    $('.avg_bp_weekly').show();
+    $('.avg_bp_monthly').hide();
     $(this).addClass('active');
     $('.bp-month').removeClass('active');
     return false
   });
 
   $('.bp-month').on('click', function(){
-//    $('.bp-week-div').hide();
-//    $('.bp-month-div').show();
+    $('.avg_bp_weekly').hide();
+    $('.avg_bp_monthly').show();
     $(this).addClass('active');
     $('.bp-week').removeClass('active');
     return false
