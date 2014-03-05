@@ -76,8 +76,34 @@
 
   function row1_ht(){
     var act_min_cnt_ht = $('.active_min_content').outerHeight();
-    $('.upcoming_patient_content').css('min-height', act_min_cnt_ht+'px');
+    var up_cnt_ht = $('.upcoming_patient_content').outerHeight();
+    if (act_min_cnt_ht > up_cnt_ht) {
+      $('.upcoming_patient_content').css('min-height', act_min_cnt_ht+'px');
+    } else {
+      $('.active_min_content').css('min-height', up_cnt_ht+'px');
+    }
   }
   $(window).resize(row1_ht);
 
+  function row2_ht(){
+    var bp_cnt_ht = $('.avg_bp_cont').outerHeight();
+    var wt_cnt_ht = $('.avg_wt_cont').outerHeight();
+    if (bp_cnt_ht > wt_cnt_ht) {
+      $('.avg_wt_cont').css('min-height', bp_cnt_ht+'px');
+    } else {
+      $('.avg_bp_cont').css('min-height', wt_cnt_ht+'px');
+    }
+  }
+  $(window).resize(row2_ht);
+
+  function row3_ht(){
+    var bs_cnt_ht = $('.avg_bs_content').outerHeight();
+    var pf_cnt_ht = $('.perf_cont').outerHeight();
+    if (bs_cnt_ht > pf_cnt_ht) {
+      $('.perf_cont').css('min-height', bs_cnt_ht+'px');
+    } else {
+      $('.avg_bs_content').css('min-height', pf_cnt_ht+'px');
+    }
+  }
+  $(window).resize(row3_ht);
 </script>
