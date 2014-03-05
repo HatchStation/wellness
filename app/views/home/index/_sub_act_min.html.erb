@@ -7,7 +7,7 @@
 
 <div class="col-sm-4 avg_active_min">
   <div class="row">
-    <div class="col-sm-12" style=" text-align: center;line-height: 15px;">
+    <div class="col-sm-12" style="text-align: center;line-height: 15px;">
       <h5 style="font-weight: bold;font-size: 15px">AVG. ACTIVE MIN</h5>
         <span class="well-green" style="font-size: 30px;">
           <%= active_minutes['avg_act_min'] %>
@@ -24,14 +24,15 @@
 
   <% active_minutes['actmovers'].each do |mover| %>
     <div class="row">
-      <div class="col-xs-12 col-sm-7">
+      <div class="col-xs-12 col-sm-7" style="color: #555;">
         <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
         <%= mover['name'] %>
       </div>
-      <div class="col-xs-12 col-sm-3" style="color: #e75735">
-        <%= mover['amount'] %> min
+      <div class="col-xs-12 col-sm-3" style="font-size: 15px;">
+        <span> <%= mover['amount'] %> </span>
+        <span style="color: #b1b1b1">min</span>
       </div>
-      <div class="col-xs-12 col-sm-2" style="color: #e75735">
+      <div class="col-xs-12 col-sm-2" style="">
         <i class="fa fa-arrow-up" style="font-size: 18px;"></i>
       </div>
     </div>
@@ -55,4 +56,5 @@
 
   }
   $(window).resize(avg_act_ht);
+  avg_act_ht();
 </script>

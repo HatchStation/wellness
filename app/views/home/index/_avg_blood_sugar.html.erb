@@ -6,9 +6,9 @@
       blood sugar
     </h2>
 
-    <div class="box-icon">
-      <a href="#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-      <!--<a href="#" class="btn-close"><i class="fa fa-times"></i></a>-->
+    <div class="box-icon" style="width: 70px">
+      <a class="bs-week well-week active" href="#">W</a>
+      <a class="bs-month well-month" href="#">M</a>
     </div>
   </div>
   <div class="box-content avg_bs_content">
@@ -78,3 +78,33 @@
 
   </div>
 </div>
+
+<script>
+  function row3_ht(){
+    var bs_cnt_ht = $('.avg_bs_content').outerHeight();
+    var pf_cnt_ht = $('.perf_cont').outerHeight();
+    if (bs_cnt_ht > pf_cnt_ht) {
+      $('.perf_cont').css('min-height', bs_cnt_ht+'px');
+    } else {
+      $('.avg_bs_content').css('min-height', pf_cnt_ht+'px');
+    }
+  }
+  $(window).resize(row3_ht);
+  row3_ht();
+
+  $('.bs-week').on('click', function(){
+//    $('.bs-week-div').show();
+//    $('.bs-month-div').hide();
+    $(this).addClass('active');
+    $('.bs-month').removeClass('active');
+    return false
+  });
+
+  $('.bs-month').on('click', function(){
+//    $('.bs-week-div').hide();
+//    $('.bs-month-div').show();
+    $(this).addClass('active');
+    $('.bs-week').removeClass('active');
+    return false
+  });
+</script>

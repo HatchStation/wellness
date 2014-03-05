@@ -2,7 +2,7 @@
 <div class="box">
   <div class="box-header">
     <h2>
-      Upcoming Patients
+      upcoming patients
     </h2>
 
     <div class="box-icon">
@@ -14,13 +14,15 @@
       <div class="row" style="margin: 0 5px;">
         <div class="col-xs-12 col-sm-6">
           <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
-          <%= patient['name'] %>
+          <span style="color: #555555; font-size: 15px;">
+            <%= patient['name'] %>
+          </span>
         </div>
-        <div class="col-xs-12 col-sm-2">
+        <div class="col-xs-12 col-sm-2" style="font-weight: bold;color: #B1B1B1;font-size: 16px;">
           <%= patient['Appointment_Date'].to_time.strftime('%H:%M') %>
         </div>
-        <div class="col-xs-1 col-sm-1" style="padding: 0;width: 0;">|</div>
-        <div class="col-xs-12 col-sm-3">
+        <div class="col-xs-1 col-sm-1" style="padding: 0;width: 0;font-weight: bold;color: #B1B1B1;font-size: 16px;">|</div>
+        <div class="col-xs-12 col-sm-3" style="font-weight: bold;color: #B1B1B1;font-size: 16px;">
           <%= patient['Appointment_Date'].to_time.strftime('%m/%e/%y') %>
         </div>
       </div>
@@ -28,3 +30,18 @@
   </div>
 
 </div>
+
+<script>
+
+  function row1_ht(){
+    var act_min_cnt_ht = $('.active_min_content').outerHeight();
+    var up_cnt_ht = $('.upcoming_patient_content').outerHeight();
+    if (act_min_cnt_ht > up_cnt_ht) {
+      $('.upcoming_patient_content').css('min-height', act_min_cnt_ht+'px');
+    } else {
+      $('.active_min_content').css('min-height', up_cnt_ht+'px');
+    }
+  }
+  $(window).resize(row1_ht);
+  row1_ht();
+</script>
