@@ -5,9 +5,9 @@
 
 
       <div class="row circleStats" style="min-width: 308px;">
-
-        <%= render partial: '/home/index/goals' %>
-
+        <div id="dashboard_goals_partial">
+          <%= render partial: '/home/index/goals' %>
+        </div>
       </div>
       <!--/row-->
 
@@ -73,4 +73,11 @@
   $( document ).ready(function() {
     $.get('/home/dashboard');
   });
+
+  function row1_ht(){
+    var act_min_cnt_ht = $('.active_min_content').outerHeight();
+    $('.upcoming_patient_content').css('min-height', act_min_cnt_ht+'px');
+  }
+  $(window).resize(row1_ht);
+
 </script>

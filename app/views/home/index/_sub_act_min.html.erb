@@ -5,11 +5,11 @@
   <% active_minutes['actmovers'] = [] %>
 <% end %>
 
-<div class="col-sm-3">
+<div class="col-sm-4 avg_active_min">
   <div class="row">
     <div class="col-sm-12" style=" text-align: center;line-height: 15px;">
-      <h5 style="font-weight: bold;">AVG. ACTIVE MIN</h5>
-        <span style="font-size: 30px; color: #ffae00">
+      <h5 style="font-weight: bold;font-size: 15px">AVG. ACTIVE MIN</h5>
+        <span class="well-green" style="font-size: 30px;">
           <%= active_minutes['avg_act_min'] %>
         </span>
       <br>
@@ -19,11 +19,11 @@
   </div>
 
 </div>
-<div class="col-sm-9">
-  <h5 style="font-weight: bold; text-align: center;">Biggest Movers</h5>
+<div class="col-sm-8 act_min_movers">
+  <h5 style="font-weight: bold; text-align: center;font-size: 16px">Biggest Movers</h5>
 
   <% active_minutes['actmovers'].each do |mover| %>
-    <div class="row" style="margin: 5px;">
+    <div class="row">
       <div class="col-xs-12 col-sm-7">
         <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
         <%= mover['name'] %>
@@ -37,3 +37,22 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  function avg_act_ht(){
+    var avg_min = $('.avg_active_min');
+    var act_min_ht = $('.act_min_movers').outerHeight();
+    var avg_ht = avg_min.outerHeight();
+    var rem_ht = (act_min_ht - avg_ht)/2;
+
+    if ($(window).width() > 753) {
+      avg_min.css('margin-top', rem_ht+'px');
+      avg_min.css('margin-bottom', rem_ht+'px');
+    } else {
+      avg_min.css('margin-top', '0');
+      avg_min.css('margin-bottom', '0');
+    }
+
+  }
+  $(window).resize(avg_act_ht);
+</script>
