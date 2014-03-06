@@ -13,8 +13,8 @@ class HomeController < ApplicationController
     @result = {}
     upcoming_patients = []
     blood_pressure = []
-    avg_bps_week = {}
-    avg_bps_month = {}
+    avg_bp_week = {}
+    avg_bp_month = {}
     active_minutes_week = {}
     active_minutes_month = {}
     blood_sugar = {}
@@ -52,14 +52,21 @@ class HomeController < ApplicationController
     @result['worst_performance'] = worst_performance
     @result['best_performance'] = best_performance
 
-    avg_bps_week['sys'] = api['averageweekbps']
-    avg_bps_month['sys'] = api['averagemonthbps']
+    avg_bp_week['sys'] = api['averageweekbps']
+    avg_bp_month['sys'] = api['averagemonthbps']
 
-    avg_bps_week['dia'] = api['averageweekbpd']
-    avg_bps_month['dia'] = api['averagemonthbpd']
+    avg_bp_week['dia'] = api['averageweekbpd']
+    avg_bp_month['dia'] = api['averagemonthbpd']
+
+    avg_bp_week['sys_movers'] = api['weekbpsmovers']
+    avg_bp_week['dia_movers'] = api['weekbpdmovers']
+    
+    avg_bp_month['sys_movers'] = api['monthbpsmovers']
+    avg_bp_month['dia_movers'] = api['monthbpdmovers']
     #blood_pressure.push(avg_bps)
-    @result['avg_bps_week'] = avg_bps_week
-    @result['avg_bps_month'] = avg_bps_month
+    @result['avg_bp_week'] = avg_bp_week
+    @result['avg_bp_month'] = avg_bp_month
+    # raise @result.inspect
 
     active_minutes_week['avg_act_min'] = api['averageweekact'].to_i
     active_minutes_week['avg_act_min_color'] = act_min_colors(api['averageweekact'])
