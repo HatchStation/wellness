@@ -1,4 +1,4 @@
-
+<% appointments = (defined?(next_app)) ? next_app : [] %>
 <div class="row" style="">
   <div class="col-md-12" style="margin: auto; margin-top: 10%;">
     <div class="calendar"></div>
@@ -6,8 +6,128 @@
 </div>
 
 <script>
+  var date = new Date();
+  var d = date.getDate();
+  var m = date.getMonth();
+  var y = date.getFullYear();
+//  console.log('d' + d + 'm' + m + 'y' + y)
+
   $('.calendar').fullCalendar({
     // put your options and callbacks here
+    theme: true,
+    header: {
+      left: 'prev',
+      center: 'title',
+//      right: 'today prev,next'
+      right: ' agendaWeek, month,next'
+    },
+    events: [
+      <% appointments.each do |appt| %>
+        {
+          <% appt_time = appt.to_datetime %>
+          title: '<%= appt_time.strftime('%l:%M %p') %>',
+          start: '<%= appt_time.strftime('%Y-%m-%d') %>',
+          allDay: true,
+          "className":"eventColor1",
+          eventColor: '#378006'
+        },
+      <% end %>
+      ]
   })
 
+</script>
+
+<style>
+  .fc-header{
+    background: #F2AF00;
+    color: white;
+  }
+  .fc-header-title h2{
+    font-size: 1.4em;
+  }
+  .fc-header-title {
+    margin: 3% 1% 1% 1%;
+  }
+  .fc-header-right{
+
+  }
+
+  .fc-button-month, .fc-button-agendaWeek {
+    border-radius: 0;
+    border: #ccc solid 2px;
+    padding: 2% 15%;
+    font-size: 16px;
+    color: #ccc;
+    background: #f5f5f5;
+    text-transform: capitalize;
+  }
+
+  .fc-button-agendaWeek.ui-state-active, .fc-button-month.ui-state-active {
+    background: #ccc;
+    color: white;
+  }
+
+  .fc-button-month{
+    margin-left: -4%;
+  }
+
+  .fc-first th {
+    background: #FFD66B;
+    color: white;
+    font-weight: normal;
+    font-size: 1.4em;
+    border-color: transparent;
+  }
+
+  .eventColor1,
+  .fc-agenda .eventColor1 .fc-event-time,
+  .eventColor1 a {
+    background-color: #F2AF00;
+    color: #ffffff;
+    font-size: 1.3em;
+    border-color: transparent;
+  }
+  .fc-day-number{
+    font-size: 1.4em;
+    margin: 10%;
+  }
+
+  .fc-button-next{
+    margin: -3%;
+    float: right;
+  }
+
+  .fc-button-prev{
+    margin: 4% -3%;
+    float: left;
+  }
+
+  .fc-button-prev, .fc-button-next{
+    display: block;
+    width: 20px;
+    background: transparent;
+    border-color: transparent;
+  }
+
+  .fc-button-prev .ui-icon-circle-triangle-w, .fc-button-next .ui-icon-circle-triangle-e {
+    background-image: none;
+    font-size: 2.5em;
+    color: white;
+  }
+
+  .fc-day{
+    border: #F8F8F8 solid 1px;
+  }
+</style>
+
+<script>
+  <% appointments.each do |appt| %>
+    <% appt_time = appt.to_datetime %>
+    var event_class = $('.fc-day[data-date="' + '<%= appt_time.strftime('%Y-%m-%d') %>' + '"]');
+    event_class.css({'background': '#F2AF00', 'color': 'white'});
+    event_class.find('.fc-day-number').css({'color': 'white'});
+  <% end %>
+
+  $('.fc-button-prev').find('.ui-icon').addClass('fa fa-angle-left').removeClass('ui-icon');
+  $('.fc-button-next').find('.ui-icon').addClass('fa fa-angle-right').removeClass('ui-icon');
 </script>

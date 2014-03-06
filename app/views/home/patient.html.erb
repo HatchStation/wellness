@@ -75,7 +75,7 @@
       if (cal.html() != ''){
         cal.show();
       } else {
-        cal.load('/home/calendar');
+        cal.load('/home/calendar?eid=P' + params['id']);
       }
       $('#stats_partial').hide();
       return false
