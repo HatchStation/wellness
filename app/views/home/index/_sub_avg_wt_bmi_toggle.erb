@@ -12,7 +12,7 @@
     </div>
     <div class="col-xs-12 col-sm-2" style="color: #e75735">
       <!--<i class="fa fa-arrow-up" style="font-size: 18px;"></i>-->
-      <span class="<%= mover['amount'].to_i > 0 ? 'arrow-s' : 'arrow-n' %>" style="font-size:1em;"></span>
+      <span class="<%= mover['amount'].to_i < 0 ? 'arrow-s' : 'arrow-n' %>" style="font-size:1em;"></span>
     </div>
   </div>
 <% end %>
