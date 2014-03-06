@@ -1,17 +1,18 @@
-<% 4.times do  %>
+<% movers = (wt_bmi_movers.nil? ? [] : wt_bmi_movers) %>
+<% movers.each do |mover| %>
   <div class="row" style="margin: 5px;">
     <div class="col-xs-12 col-sm-7">
       <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
         <span style="color: #555555;">
-          Keer Yee
+          <%= mover['name'] %>
         </span>
     </div>
     <div class="col-xs-12 col-sm-3" style="">
-      189/95
+      <%= mover['amount'] %>
     </div>
     <div class="col-xs-12 col-sm-2" style="color: #e75735">
       <!--<i class="fa fa-arrow-up" style="font-size: 18px;"></i>-->
-      <span class="arrow-n" style="font-size:1em;"></span>
+      <span class="<%= mover['amount'].to_i > 0 ? 'arrow-s' : 'arrow-n' %>" style="font-size:1em;"></span>
     </div>
   </div>
 <% end %>

@@ -1,10 +1,11 @@
+<% avg_wt_bmi = (defined?(wt_bmi)) ? wt_bmi : {} %>
 <div class="row">
   <div class="col-sm-4">
     <div class="row">
       <div class="col-sm-12" style=" text-align: center;line-height: 15px;">
         <h5 style="font-weight: bold;font-size: 15px;">AVG. WEIGHT</h5>
               <span style="font-size: 30px; color: #555555">
-                197
+                <%= avg_wt_bmi['avg_wght'] %>
               </span>
         lbs
       </div>
@@ -14,7 +15,7 @@
       <div class="col-sm-12" style=" text-align: center;line-height: 15px;margin-top: 2%">
         <h5 style="font-weight: bold;font-size: 15px;">AVG. BODY FAT</h5>
               <span style="font-size: 30px; color: #555555">
-                18.7%
+                <%= avg_wt_bmi['avg_bmi'] %>%
               </span>
       </div>
     </div>
@@ -41,12 +42,30 @@
     </div>
 
     <div class="avg_wt_movers">
-      <%= render partial: '/home/index/sub_avg_wt_bmi_toggle' %>
+      <%= render partial: '/home/index/sub_avg_wt_bmi_toggle', locals: { wt_bmi_movers: avg_wt_bmi['weight_movers'] } %>
     </div>
 
-    <div class="avg_bmi_movers" style="display: none">
-      <%= render partial: '/home/index/sub_avg_wt_bmi_toggle' %>
+    <div class="avg_bmi_movers" style="display: none;">
+      <%= render partial: '/home/index/sub_avg_wt_bmi_toggle', locals: { wt_bmi_movers: avg_wt_bmi['bmi_movers'] } %>
     </div>
 
   </div>
 </div>
+
+
+<script>
+  $('.wt_toggle').on('click', function(){
+    $('.avg_wt_movers').show();
+    $('.avg_bmi_movers').hide();
+    $('.bmi_toggle').css('color', '#E2E2E2');
+    $(this).css('color', '#646464;');
+    return false
+  });
+  $('.bmi_toggle').on('click', function(){
+    $('.avg_wt_movers').hide();
+    $('.avg_bmi_movers').show();
+    $('.wt_toggle').css('color', '#E2E2E2');
+    $(this).css('color', '#646464;');
+    return false
+  });
+</script>

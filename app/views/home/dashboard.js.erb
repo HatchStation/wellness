@@ -12,7 +12,9 @@ $('#avg_blood_sugar_partial').html('<%= escape_javascript render partial: '/home
 
 $('#dashboard_goals_partial').html('<%= escape_javascript render partial: '/home/index/goals', locals: { gls: @result['goals'] } %>');
 
-$('#avg_weight_partial').html('<%= escape_javascript render partial: '/home/index/weight', locals: {  } %>');
+$('.average_weight_weekly').html('<%= escape_javascript render partial: '/home/index/sub_avg_weight', locals: { wt_bmi: @result['avg_weight_week'] } %>');
+
+$('.average_weight_monthly').html('<%= escape_javascript render partial: '/home/index/sub_avg_weight', locals: { wt_bmi: @result['avg_weight_month'] } %>');
 
 $('#performance_partial').html('<%= escape_javascript render partial: '/home/index/performance', locals: {  } %>');
 
