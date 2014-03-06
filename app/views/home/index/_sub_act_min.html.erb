@@ -29,7 +29,7 @@
         <%= mover['name'] %>
       </div>
       <div class="col-xs-12 col-sm-3 <%= mover['color'] %>" style="font-size: 18px;">
-        <span> <%= mover['amount'] %> </span>
+        <span> <%= mover['amount'].to_i.abs %> </span>
         <span style="color: #b1b1b1">min</span>
       </div>
       <div class="col-xs-12 col-sm-2" style="">
