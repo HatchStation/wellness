@@ -8,7 +8,7 @@
       <div class="we-content">
         <div class="row ht-wt">
           <div class="col-md-6 col-sm-6 col-xs-6">
-            <% ht = (biometrics['hght']['value'].to_f * 3.2808).round(2).to_s  %>
+            <% ht = (biometrics['hght']['value'].to_f * 3.2808).round(2).to_s rescue 0  %>
             <span><%= ht.split('.').first %></span>
             ft
             <span><%= ht.split('.').last %></span>
