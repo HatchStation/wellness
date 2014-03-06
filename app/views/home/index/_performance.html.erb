@@ -5,36 +5,41 @@
       performance
     </h2>
 
-    <div class="box-icon" style="width: 115px;">
+    <div class="box-icon" style="width: 130px;">
       <a class="pf-week well-week active" href="#">Best</a>
       <a class="pf-month well-month" href="#">Worst</a>
     </div>
   </div>
   <div class="box-content perf_cont">
 
-    <% 5.times do %>
-      <div class="row" style="margin: 0 5px;">
-        <div class="col-sm-6">
-          <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
-          Keer Yee
-        </div>
-        <div class="col-sm-4">
-          <div class="performance_bar"></div>
-        </div>
-        <div class="col-sm-2" style="font-weight: bold; font-size: 18px; color: #B1B1B1">
-          4/9/14
-        </div>
-      </div>
-    <% end %>
+    <div class="best_performance">
+      <%= render partial: '/home/index/best_worst' %>
+    </div>
+
+    <div class="worst_performance" style="display: none;">
+      <%= render partial: '/home/index/best_worst' %>
+    </div>
+
   </div>
 </div>
 
 
 <style>
   .pf-month.active{
-    padding: 4% 9%;
+    padding: 5% 9%;
   }
 
+  .pf-month{
+    padding: 3% 9%;
+  }
+
+  .pf-week {
+    padding: 3.5% 12%;
+  }
+
+  .pf-week.active {
+    padding: 3% 9%;
+  }
   .performance_bar{
     padding: 8%;
     margin: 5% 0;
@@ -48,16 +53,16 @@
 
 <script>
   $('.pf-week').on('click', function(){
-//    $('.pf-week-div').show();
-//    $('.pf-month-div').hide();
+    $('.best_performance').show();
+    $('.worst_performance').hide();
     $(this).addClass('active');
     $('.pf-month').removeClass('active');
     return false
   });
 
   $('.pf-month').on('click', function(){
-//    $('.pf-week-div').hide();
-//    $('.pf-month-div').show();
+    $('.best_performance').hide();
+    $('.worst_performance').show();
     $(this).addClass('active');
     $('.pf-week').removeClass('active');
     return false

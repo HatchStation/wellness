@@ -21,16 +21,36 @@ class HomeController < ApplicationController
     goals = {}
     avg_weight_week = {}
     avg_weight_month = {}
+    best_performance = []
+    worst_performance = []
 
     api.each do |id, patient|
-      if patient.class == Hash && !patient['Nextappt'].nil? && patient['Nextappt'].any?
-        user['name'] = patient['Owner_First_Name']
-        user['Appointment_Date'] = patient['Nextappt'].first['Appointment_Date']
-        upcoming_patients.push(user)
-        user = {}
+      if patient.class == Hash
+        if !patient['Nextappt'].nil? && patient['Nextappt'].any?
+          user['name'] = patient['Owner_First_Name']
+          user['Appointment_Date'] = patient['Nextappt'].first['Appointment_Date']
+          upcoming_patients.push(user)
+          user = {}
+        end
+
+        if !patient['Movement'].nil? && patient['Movement'].any? && patient['Movement']['Direction'].present? && patient['Movement']['Date'].present?
+          if patient['Movement']['Direction'] == 'Worse' && worst_performance.length < 5 
+	        worst_performer = {}
+    	    worst_performer['name'] = patient['Owner_First_Name']
+        	worst_performer['date'] = patient['Movement']['Date']
+        	worst_performance.push(worst_performer)
+          elsif patient['Movement']['Direction'] == 'Improved' && best_performance.length < 5
+            best_performer = {}
+            best_performer['name'] = patient['Owner_First_Name']
+            best_performer['date'] = patient['Movement']['Date']
+            best_performance.push(best_performer)
+          end
+        end
       end
     end
     @result['upcoming_patients'] = upcoming_patients
+    @result['worst_performance'] = worst_performance
+    @result['best_performance'] = best_performance
 
     avg_bps_week['sys'] = api['averageweekbps']
     avg_bps_month['sys'] = api['averagemonthbps']

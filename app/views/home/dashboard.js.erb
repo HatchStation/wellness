@@ -16,5 +16,7 @@ $('.average_weight_weekly').html('<%= escape_javascript render partial: '/home/i
 
 $('.average_weight_monthly').html('<%= escape_javascript render partial: '/home/index/sub_avg_weight', locals: { wt_bmi: @result['avg_weight_month'] } %>');
 
-$('#performance_partial').html('<%= escape_javascript render partial: '/home/index/performance', locals: {  } %>');
+$('.best_performance').html('<%= escape_javascript render partial: '/home/index/best_worst', locals: { performer: @result['best_performance'] } %>');
+
+$('.worst_performance').html('<%= escape_javascript render partial: '/home/index/best_worst', locals: { performer: @result['worst_performance'] } %>');
 

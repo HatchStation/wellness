@@ -1,0 +1,16 @@
+<% performance = (defined?(performer)) ? performer : [] %>
+
+<% performance.each do |pf| %>
+    <div class="row" style="margin: 0 5px;">
+      <div class="col-sm-5">
+        <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
+        <%= pf['name'] %>
+      </div>
+      <div class="col-sm-4">
+        <div class="performance_bar"></div>
+      </div>
+      <div class="col-sm-3" style="font-weight: bold; font-size: 18px; color: #B1B1B1">
+        <%= pf['date'] %>
+      </div>
+    </div>
+<% end %>
