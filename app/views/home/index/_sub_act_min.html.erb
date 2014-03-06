@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-sm-12" style="text-align: center;line-height: 15px;">
       <h5 style="font-weight: bold;font-size: 15px">AVG. ACTIVE MIN</h5>
-        <span class="well-green" style="font-size: 30px;">
+        <span class="<%= active_minutes['avg_act_min_color'] %> " style="font-size: 30px;">
           <%= active_minutes['avg_act_min'] %>
         </span>
       <br>
@@ -28,12 +28,12 @@
         <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
         <%= mover['name'] %>
       </div>
-      <div class="col-xs-12 col-sm-3" style="font-size: 15px;">
+      <div class="col-xs-12 col-sm-3 <%= mover['color'] %>" style="font-size: 18px;">
         <span> <%= mover['amount'] %> </span>
         <span style="color: #b1b1b1">min</span>
       </div>
       <div class="col-xs-12 col-sm-2" style="">
-        <span class="arrow-s" style="font-size:1em;"></span>
+        <span class="<%= mover['amount'].to_i < 0 ? 'arrow-s' : 'arrow-n' %>" style="font-size:1em;"></span>
       </div>
     </div>
   <% end %>
