@@ -85,9 +85,13 @@ class HomeController < ApplicationController
     @result['blood_sugar'] = blood_sugar
 
     goals['fitness'] = api['activitysuccess']
+    goals['fitness_color'] = goal_colors(goals['fitness'].to_i)
     goals['weight'] = api['weightsuccess']
+    goals['weight_color'] = goal_colors(goals['weight'].to_i)
     goals['bp'] = api['bpsuccess']
+    goals['bp_color'] = goal_colors(goals['bp'].to_i)
     goals['servings'] = api['foodsuccess']
+    goals['servings_color'] = goal_colors(goals['servings'].to_i)
     @result['goals'] = goals
 
     avg_weight_week['avg_wght'] = api['averageweekwght'].to_i
@@ -511,5 +515,16 @@ class HomeController < ApplicationController
       assign_to = 'well-red'
     end
     return assign_to
+  end
+
+  def goal_colors(goal)
+    if goal.to_i == 100
+    	color = '#a9d248'
+    elsif goal > 50 && goal < 99
+    	color = '#F2AF00'
+    else
+    	color = '#DC5034'
+    end
+    return color
   end
 end

@@ -1,6 +1,6 @@
 <% goals = (defined?(gls)) ? gls : {} %>
 <div class="col-md-3 col-sm-4 col-xs-6">
-  <div class="circleStatsItem <%= goals['fitness'].to_i == 100 ? 'well-green' : 'well-yellow' %> ">
+  <div class="circleStatsItem" style="color: <%= goals['fitness_color'] %>">
     <i class="fa fa-leaf"></i>
     <span class="percent">%</span>
     <input type="text" value="<%= goals['fitness'] %>" class="fitness_goal"/>
@@ -10,7 +10,7 @@
 <!--/col-->
 
 <div class="col-md-3 col-sm-4 col-xs-6">
-  <div class="circleStatsItem <%= goals['weight'].to_i == 100 ? 'well-green' : 'well-yellow' %>">
+  <div class="circleStatsItem" style="color: <%= goals['weight_color'] %>">
     <i class="fa fa-heart"></i>
     <span class="percent">%</span>
     <input type="text" value="<%= goals['weight'] %>" class="weight_goal"/>
@@ -20,7 +20,7 @@
 <!--/col-->
 
 <div class="col-md-3 col-sm-4 col-xs-6">
-  <div class="circleStatsItem <%= goals['bp'].to_i == 100 ? 'well-green' : 'well-yellow' %>">
+  <div class="circleStatsItem" style="color: <%= goals['bp_color'] %>">
     <i class="fa fa-fire"></i>
     <span class="percent">%</span>
     <input type="text" value="<%= goals['bp'] %>" class="blood_pressure_goal"/>
@@ -30,7 +30,7 @@
 <!--/col-->
 
 <div class="col-md-3 col-sm-4 col-xs-6">
-  <div class="circleStatsItem <%= goals['servings'].to_i == 100 ? 'well-green' : 'well-yellow' %>">
+  <div class="circleStatsItem" style="color: <%= goals['servings_color'] %>">
     <i class="fa fa-location-arrow"></i>
     <span class="percent">%</span>
     <input type="text" value="<%= goals['servings'] %>" class="servings_goal"/>
@@ -54,7 +54,7 @@
         'readOnly': true,
         'width': 200,
         'height': 200,
-        'fgColor': '<%= goals['fitness'].to_i == 100 ? '#a9d248' : '#F2AF00' %>',
+        'fgColor': '<%= goals['fitness_color'] %>',
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
@@ -67,7 +67,7 @@
         'readOnly': true,
         'width': 200,
         'height': 200,
-        'fgColor': '<%= goals['weight'].to_i == 100 ? '#a9d248' : '#F2AF00' %>',
+        'fgColor': '<%= goals['weight_color'] %>',
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
@@ -80,7 +80,7 @@
         'readOnly': true,
         'width': 200,
         'height': 200,
-        'fgColor': '<%= goals['bp'].to_i == 100 ? '#a9d248' : '#F2AF00' %>',
+        'fgColor': '<%= goals['bp_color'] %>',
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
@@ -93,7 +93,7 @@
         'readOnly': true,
         'width': 200,
         'height': 200,
-        'fgColor': '<%= goals['servings'].to_i == 100 ? '#a9d248' : '#F2AF00' %>',
+        'fgColor': '<%= goals['servings_color'] %>',
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
