@@ -17,7 +17,8 @@ class HomeController < ApplicationController
     avg_bp_month = {}
     active_minutes_week = {}
     active_minutes_month = {}
-    blood_sugar = {}
+    blood_sugar_week = {}
+    blood_sugar_month = {}
     goals = {}
     avg_weight_week = {}
     avg_weight_month = {}
@@ -87,13 +88,21 @@ class HomeController < ApplicationController
       mover['color'] = act_min_colors(mover['amount'])
     end
     active_minutes_month['actmovers'] = api['monthactmovers']
-
     @result['active_minutes_week'] = active_minutes_week
     @result['active_minutes_month'] = active_minutes_month
 
-    blood_sugar['h1c'] = api['average']['h1c']
-    blood_sugar['gluc'] = api['average']['gluc']
-    @result['blood_sugar'] = blood_sugar
+    blood_sugar_week['h1c'] = api['averageweekgluc']
+    blood_sugar_week['h1c_color'] = hba1c_color(blood_sugar_week['h1c'])
+    blood_sugar_month['h1c'] = api['averagemonthgluc']
+    blood_sugar_month['h1c_color'] = hba1c_color(blood_sugar_month['h1c'])
+    blood_sugar_week['gluc'] = api['averageweekgluc']
+    blood_sugar_week['gluc_color'] = gluc_color(blood_sugar_week['gluc'])
+    blood_sugar_month['gluc'] = api['averagemonthgluc']
+    blood_sugar_month['gluc_color'] = gluc_color(blood_sugar_month['gluc'])
+    blood_sugar_week['gluc_movers'] = api['weekglucmovers']
+    blood_sugar_month['gluc_movers'] = api['monthglucmovers']
+    @result['blood_sugar_week'] = blood_sugar_week
+    @result['blood_sugar_month'] = blood_sugar_month
 
     goals['fitness'] = api['activitysuccess']
     goals['fitness_color'] = goal_colors(goals['fitness'].to_i)
@@ -573,4 +582,31 @@ class HomeController < ApplicationController
 	end
 	return bpd_color
   end
+
+  def gluc_color(value)
+	glucose = value.to_i
+    if (80..100) === glucose
+      gluc_color = 'well-green'
+    elsif (101..125) === glucose
+      gluc_color = 'well-orange'
+    elsif glucose > 126
+      gluc_color = 'well-red'
+    else
+      gluc_color = 'well-red'
+    end
+  end
+
+  def hba1c_color(value)
+  	hba1c = value.to_i
+    if (4..6) === hba1c
+	  hba1c_color = 'well-green'
+	elsif (6..8) === hba1c
+	  hba1c_color = 'well-orange'
+	elsif (8..14) === hba1c
+	  hba1c_color = 'well-red'
+	else
+	  hba1c_color = 'well-red'
+	end
+  end
+
 end

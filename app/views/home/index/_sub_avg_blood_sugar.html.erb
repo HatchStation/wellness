@@ -1,9 +1,16 @@
+<%# blood_sugar = (defined?(bld_sgr)) ? bld_sgr : {} %>
+<% if defined?(bld_sgr) %>
+<% blood_sugar = bld_sgr %>
+<% else %>
+<% blood_sugar = {} %>
+<% blood_sugar['gluc_movers'] = [] %>
+<% end %>
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-4 avg_h1c_gluc">
     <div class="row">
       <div class="col-sm-12" style=" text-align: center;line-height: 15px;">
         <h5 style="font-weight: bold; font-size: 15px;">HBA1C</h5>
-              <span style="font-size: 30px; color: #ffae00">
+              <span style="font-size: 30px;" class="<%= blood_sugar['h1c_color'] %>">
                 <%= blood_sugar['h1c'] %>
               </span>
         <br>
@@ -16,7 +23,7 @@
       <div class="col-sm-12" style=" text-align: center;line-height: 15px;margin-top: 2%">
         <h5 style="font-weight: bold; font-size: 15px;">FASTING
         </h5>
-              <span style="font-size: 30px; color: #a9d248">
+              <span style="font-size: 30px;" class="<%= blood_sugar['gluc_color'] %>">
                 <%= blood_sugar['gluc'] %>
               </span>
         <br>
@@ -26,23 +33,45 @@
     </div>
 
   </div>
-  <div class="col-sm-8">
+  <div class="col-sm-8 gluc_mover_div">
     <h5 style="font-weight: bold; text-align: center;font-size: 16px">Biggest Movers</h5>
-    <% 5.times do  %>
+    <% blood_sugar['gluc_movers'].each do |mover| %>
       <div class="row" style="margin: 5px;">
         <div class="col-xs-12 col-sm-7">
           <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
-              <span style="color: #555555">
-                Keer Yee
+              <span style="color: #555555" title="<%= mover['name'] %>">
+                <%= truncate(mover['name'], length: 21) %>
               </span>
         </div>
         <div class="col-xs-12 col-sm-3" style="">
-          189/95
+          <%= mover['amount'].to_i.abs %>
         </div>
         <div class="col-xs-12 col-sm-2" style="">
-          <span class="arrow-s" style="font-size:1em;"></span>
+          <span class="<%= mover['amount'].to_i < 0 ? 'arrow-s' : 'arrow-n' %>" style="font-size:1em;"></span>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  function h1c_gluc_ht(){
+    var avg_h1c_gluc = $('.avg_h1c_gluc');
+    var gluc_mover = $('.gluc_mover_div').outerHeight();
+    var avg_ht = avg_h1c_gluc.outerHeight();
+
+    if (gluc_mover > avg_ht){
+      var rem_ht = (gluc_mover - avg_ht)/2;
+      if ($(window).width() > 753) {
+        avg_h1c_gluc.css('margin-top', rem_ht + 'px');
+        avg_h1c_gluc.css('margin-bottom', rem_ht + 'px');
+      } else {
+        avg_h1c_gluc.css('margin-top', '0');
+        avg_h1c_gluc.css('margin-bottom', '0');
+      }
+    }
+  }
+
+  $(window).resize(h1c_gluc_ht);
+  h1c_gluc_ht();
+</script>

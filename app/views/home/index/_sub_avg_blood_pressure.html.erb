@@ -1,6 +1,6 @@
 <% blood_pressure = (defined?(bld_pres)) ? bld_pres : {} %>
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-4 avg_sys_dia_div">
     <div class="row">
       <div class="col-sm-12" style=" text-align: center;line-height: 15px;">
         <h5 style="font-weight: bold;font-size: 15px;">AVG. SYSTOLIC</h5>
@@ -26,7 +26,7 @@
     </div>
 
   </div>
-  <div class="col-sm-8">
+  <div class="col-sm-8 sys_dia_movers_div">
     <h5 style="font-weight: bold; text-align: center;font-size: 16px;">Biggest Movers</h5>
       <div class="row">
         <div class="col-xs-6" style="text-align: right; font-size: 15px;">
@@ -49,6 +49,25 @@
 </div>
 
 <script>
+  function sys_dia_ht(){
+    var avg_sd_ht = $('.avg_sys_dia_div');
+    var sd_mov_ht = $('.sys_dia_movers_div').outerHeight();
+    var avg_ht = avg_sd_ht.outerHeight();
+    var rem_ht = (sd_mov_ht - avg_ht)/2;
+    if(sd_mov_ht > avg_ht) {
+      if ($(window).width() > 753) {
+        avg_sd_ht.css('margin-top', rem_ht+'px');
+        avg_sd_ht.css('margin-bottom', rem_ht+'px');
+      } else {
+        avg_sd_ht.css('margin-top', '0');
+        avg_sd_ht.css('margin-bottom', '0');
+      }
+    
+    }
+  }
+  $(window).resize(sys_dia_ht);
+  sys_dia_ht();
+  
   $('.sys_toggle').on('click', function(){
     $('.avg_sys_movers').show();
     $('.avg_dia_movers').hide();

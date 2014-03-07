@@ -8,7 +8,9 @@ $('.min-week-div').html('<%= escape_javascript render partial: '/home/index/sub_
 
 $('.min-month-div').html('<%= escape_javascript render partial: '/home/index/sub_act_min', locals: { act_min: @result['active_minutes_month'] } %>');
 
-$('#avg_blood_sugar_partial').html('<%= escape_javascript render partial: '/home/index/avg_blood_sugar', locals: { bld_sgr: @result['blood_sugar'] } %>');
+$('.avg_bs_weekly').html('<%= escape_javascript render partial: '/home/index/sub_avg_blood_sugar', locals: { bld_sgr: @result['blood_sugar_week'] } %>');
+
+$('.avg_bs_monthly').html('<%= escape_javascript render partial: '/home/index/sub_avg_blood_sugar', locals: { bld_sgr: @result['blood_sugar_month'] } %>');
 
 $('#dashboard_goals_partial').html('<%= escape_javascript render partial: '/home/index/goals', locals: { gls: @result['goals'] } %>');
 

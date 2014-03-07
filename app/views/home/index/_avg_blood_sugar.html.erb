@@ -1,4 +1,3 @@
-<% blood_sugar = (defined?(bld_sgr)) ? bld_sgr : {} %>
 <div class="box">
   <div class="box-header">
     <h2>
@@ -13,10 +12,10 @@
   </div>
   <div class="box-content avg_bs_content">
     <div class="avg_bs_weekly">
-      <%= render partial: '/home/index/sub_avg_blood_sugar', locals: {blood_sugar: blood_sugar} %>
+      <%= render partial: '/home/index/sub_avg_blood_sugar' %>
     </div>
     <div class="avg_bs_monthly" style="display: none">
-      <%= render partial: '/home/index/sub_avg_blood_sugar', locals: {blood_sugar: blood_sugar} %>
+      <%= render partial: '/home/index/sub_avg_blood_sugar' %>
     </div>
   </div>
 </div>
