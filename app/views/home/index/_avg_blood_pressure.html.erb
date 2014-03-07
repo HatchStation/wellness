@@ -30,10 +30,11 @@
     } else {
       $('.avg_bp_cont').css('min-height', wt_cnt_ht+'px');
     }
-    console.log('row2')
+    // console.log('row2')
   }
 //  $(window).resize(row2_ht);
-  row2_ht();
+  setTimeout(function(){ row2_ht() } ,500);
+
 
   $('.bp-week').on('click', function(){
     $('.avg_bp_weekly').show();

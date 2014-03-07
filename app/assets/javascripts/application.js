@@ -47,5 +47,10 @@ $(document).ready(function () {
 //  $.get('/home/flot_charts?id=' + id);
 
 
+$(document).ajaxStart(function () {
+    $("#loading").show();
+}).ajaxStop(function () {
+    $("#loading").hide();
+});
 
 });
