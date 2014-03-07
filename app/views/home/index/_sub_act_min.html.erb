@@ -47,15 +47,16 @@
     var act_min_ht = $('.act_min_movers').outerHeight();
     var avg_ht = avg_min.outerHeight();
     var rem_ht = (act_min_ht - avg_ht)/2;
-
-    if ($(window).width() > 753) {
-      avg_min.css('margin-top', rem_ht+'px');
-      avg_min.css('margin-bottom', rem_ht+'px');
-    } else {
-      avg_min.css('margin-top', '0');
-      avg_min.css('margin-bottom', '0');
+    if(act_min_ht > avg_ht) {
+    // console.log('yes')
+        if ($(window).width() > 753) {
+          avg_min.css('margin-top', rem_ht+'px');
+          avg_min.css('margin-bottom', rem_ht+'px');
+        } else {
+          avg_min.css('margin-top', '0');
+          avg_min.css('margin-bottom', '0');
+        }
     }
-
   }
   $(window).resize(avg_act_ht);
   avg_act_ht();

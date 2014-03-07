@@ -1,6 +1,6 @@
 <% avg_wt_bmi = (defined?(wt_bmi)) ? wt_bmi : {} %>
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-4 avg_wght_fat_div">
     <div class="row">
       <div class="col-sm-12" style=" text-align: center;line-height: 15px;">
         <h5 style="font-weight: bold;font-size: 15px;">AVG. WEIGHT</h5>
@@ -30,7 +30,7 @@
     </div>
 
   </div>
-  <div class="col-sm-8">
+  <div class="col-sm-8 wght_bmi_mover">
     <h5 style="font-weight: bold; text-align: center;font-size: 16px;">Biggest Movers</h5>
     <div class="row">
       <div class="col-xs-6" style="text-align: right; font-size: 15px;">
@@ -54,6 +54,29 @@
 
 
 <script>
+
+
+  function wght_bmi_ht(){
+    var avg_wght_bmi = $('.avg_wght_fat_div');
+    var wght_bmi_mover = $('.wght_bmi_mover').outerHeight();
+    var avg_ht = avg_wght_bmi.outerHeight();
+
+    if(wght_bmi_mover > avg_ht){
+      var rem_ht = (wght_bmi_mover - avg_ht)/2;
+    
+        if ($(window).width() > 753) {
+          avg_wght_bmi.css('margin-top', rem_ht+'px');
+          avg_wght_bmi.css('margin-bottom', rem_ht+'px');
+        } else {
+          avg_wght_bmi.css('margin-top', '0');
+          avg_wght_bmi.css('margin-bottom', '0');
+        }
+      }
+    }
+  $(window).resize(wght_bmi_ht);
+  wght_bmi_ht();
+
+
   $('.wt_toggle').on('click', function(){
     $('.avg_wt_movers').show();
     $('.avg_bmi_movers').hide();
