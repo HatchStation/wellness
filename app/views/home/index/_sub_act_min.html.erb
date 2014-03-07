@@ -26,7 +26,9 @@
     <div class="row">
       <div class="col-xs-12 col-sm-7" style="color: #555;">
         <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
-        <%= mover['name'] %>
+        <span title="<%= mover['name'] %>">
+          <%= truncate(mover['name'], length: 21) %>
+        </span>
       </div>
       <div class="col-xs-12 col-sm-3 <%= mover['color'] %>" style="font-size: 18px;">
         <span> <%= mover['amount'].to_i.abs %> </span>
