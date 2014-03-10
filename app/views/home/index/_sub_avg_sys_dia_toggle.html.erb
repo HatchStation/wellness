@@ -4,10 +4,10 @@
         <div class="col-xs-12 col-sm-8">
           <img src="http://www.peopleplacers.co.uk/wp-content/uploads/2012/07/business-people1.jpg" width="25" height="25">
             <span style="color: #555555;" title="<%= mover['name'] %>">
-              <%= truncate(mover['name'], length: 21) %>
+              <%= truncate(mover['name'], length: 18) %>
             </span>
         </div>
-        <div class="col-xs-12 col-sm-2" style="">
+        <div class="col-xs-12 col-sm-2 <%= mover['color'] %>">
           <%= mover['amount'].to_i.abs %>
         </div>
         <div class="col-xs-12 col-sm-2" style="color: #e75735">

@@ -1,5 +1,6 @@
 $dell-blue: #0085C3;
 $dell-gray: #AAAAAA;
+$well-grey: #868686;
 $dell-green: #7AB800;
 $well-green: #a9d248;
 $dell-yellow: #F2AF00;
@@ -16,6 +17,10 @@ $dell-light-gray: #EEEEEE;
 
 .well-green {
   color: $well-green !important;
+}
+
+.well-grey {
+  color: $well-grey !important;
 }
 
 .well-bg-green {

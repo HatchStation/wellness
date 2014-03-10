@@ -63,7 +63,13 @@ class HomeController < ApplicationController
     avg_bp_month['dia'] = api['averagemonthbpd']
     avg_bp_month['dia_color'] = dia_color(avg_bp_month['dia'].to_i)
 
+    api['weekbpsmovers'].each do |mover|
+      mover['color'] = sys_color(mover['amount'].to_i.abs)
+    end
     avg_bp_week['sys_movers'] = api['weekbpsmovers']
+    api['weekbpdmovers'].each do |mover|
+      mover['color'] = dia_color(mover['amount'].to_i.abs)
+    end
     avg_bp_week['dia_movers'] = api['weekbpdmovers']
     
     avg_bp_month['sys_movers'] = api['monthbpsmovers']
@@ -552,8 +558,7 @@ class HomeController < ApplicationController
 
   def sys_color(sys)
   	systolic = sys.to_i
-  	if systolic <= 120
-    # raise systolic.inspect
+  	if systolic <= 120 && systolic > 0
       bps_color = 'well-green'
     elsif (120..140) === systolic
       bps_color = 'well-yellow'
@@ -561,6 +566,8 @@ class HomeController < ApplicationController
       bps_color = 'well-orange'
     elsif systolic > 160
       bps_color = 'well-red'
+  	elsif systolic == 0
+	  bps_color = 'well-grey'
     else
       bps_color = 'well-red'
     end
@@ -569,7 +576,7 @@ class HomeController < ApplicationController
 
   def dia_color(dia)
   	diastolic = dia.to_i
-    if diastolic <= 80
+    if diastolic <= 80 && diastolic > 0
 	  bpd_color = 'well-green'
 	elsif (80..90) === diastolic
 	  bpd_color = 'well-yellow'
@@ -577,7 +584,9 @@ class HomeController < ApplicationController
 	  bpd_color = 'well-orange'
 	elsif diastolic > 100
 	  bpd_color = 'well-red'
-	else
+  	elsif diastolic == 0
+	  bpd_color = 'well-grey'
+    else
 	  bpd_color = 'well-red'
 	end
 	return bpd_color
