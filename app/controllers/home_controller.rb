@@ -67,13 +67,22 @@ class HomeController < ApplicationController
       mover['color'] = sys_color(mover['amount'].to_i.abs)
     end
     avg_bp_week['sys_movers'] = api['weekbpsmovers']
+
     api['weekbpdmovers'].each do |mover|
       mover['color'] = dia_color(mover['amount'].to_i.abs)
     end
     avg_bp_week['dia_movers'] = api['weekbpdmovers']
     
+    api['monthbpsmovers'].each do |mover|
+      mover['color'] = sys_color(mover['amount'].to_i.abs)
+    end
     avg_bp_month['sys_movers'] = api['monthbpsmovers']
+    
+    api['monthbpdmovers'].each do |mover|
+      mover['color'] = dia_color(mover['amount'].to_i.abs)
+    end
     avg_bp_month['dia_movers'] = api['monthbpdmovers']
+
     #blood_pressure.push(avg_bps)
     @result['avg_bp_week'] = avg_bp_week
     @result['avg_bp_month'] = avg_bp_month
@@ -128,9 +137,17 @@ class HomeController < ApplicationController
     avg_weight_month['avg_bfat'] = api['averagemonthbfat'].to_i
 
     avg_weight_week['weight_movers'] = api['weekwghtmovers']
+
+    api['weekbmimovers'].each do |mover|
+      mover['color'] = bmi_colors(mover['amount'].to_i.abs)
+    end
     avg_weight_week['bmi_movers'] = api['weekbmimovers']
 
     avg_weight_month['weight_movers'] = api['monthwghtmovers']
+
+    api['monthbmimovers'].each do |mover|
+      mover['color'] = bmi_colors(mover['amount'].to_i.abs)
+    end
     avg_weight_month['bmi_movers'] = api['monthbmimovers']
 
     @result['avg_weight_month'] = avg_weight_month
@@ -534,11 +551,14 @@ class HomeController < ApplicationController
     return new_hash
   end
 
-  def act_min_colors(value)
-    if value.to_i > 75
+  def act_min_colors(val)
+  	value = val.to_i.abs
+    if value > 75
       assign_to = 'well-green'
-    elsif value.to_i < 75 && value.to_i > 50
+    elsif value < 75 && value > 50
       assign_to = 'well-yellow'
+  	elsif value == 0
+      assign_to = 'well-grey'
     else
       assign_to = 'well-red'
     end
@@ -616,6 +636,20 @@ class HomeController < ApplicationController
 	else
 	  hba1c_color = 'well-red'
 	end
+  end
+
+  def bmi_colors(val)
+  	value = val.to_i
+  	if value < 18.5 && value > 0
+  	  bmi_color = 'well-green'
+	elsif value > 18.5 && value < 24.9
+  	  bmi_color = 'well-orange'
+	elsif value > 25
+  	  bmi_color = 'well-red'
+  	else
+  	  bmi_color = 'well-grey'
+	end
+	return bmi_color
   end
 
 end
