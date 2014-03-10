@@ -445,7 +445,7 @@ class HomeController < ApplicationController
         systolic = bps.last['Biometric_Value'].to_i
         blood_pressure['systolic'] = systolic
 
-        if systolic >= 120
+        if systolic <= 120
           bps_color = 'well-green'
         elsif (120..140) === systolic
           bps_color = 'well-yellow'
@@ -471,7 +471,7 @@ class HomeController < ApplicationController
         diastolic = bpd.last['Biometric_Value'].to_i
         blood_pressure['diastolic'] = diastolic
 
-        if diastolic >= 80
+        if diastolic <= 80
           bpd_color = 'well-green'
         elsif (80..90) === diastolic
           bpd_color = 'well-yellow'
@@ -552,8 +552,8 @@ class HomeController < ApplicationController
 
   def sys_color(sys)
   	systolic = sys.to_i
-  	if systolic >= 120
-    raise systolic.inspect
+  	if systolic <= 120
+    # raise systolic.inspect
       bps_color = 'well-green'
     elsif (120..140) === systolic
       bps_color = 'well-yellow'
@@ -569,7 +569,7 @@ class HomeController < ApplicationController
 
   def dia_color(dia)
   	diastolic = dia.to_i
-    if diastolic >= 80
+    if diastolic <= 80
 	  bpd_color = 'well-green'
 	elsif (80..90) === diastolic
 	  bpd_color = 'well-yellow'
