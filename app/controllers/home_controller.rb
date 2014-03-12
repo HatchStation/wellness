@@ -106,9 +106,9 @@ class HomeController < ApplicationController
     @result['active_minutes_week'] = active_minutes_week
     @result['active_minutes_month'] = active_minutes_month
 
-    blood_sugar_week['h1c'] = api['averageweekgluc']
+    blood_sugar_week['h1c'] = 1api['averageweekh1b']
     blood_sugar_week['h1c_color'] = hba1c_color(blood_sugar_week['h1c'])
-    blood_sugar_month['h1c'] = api['averagemonthgluc']
+    blood_sugar_month['h1c'] = api['averagemonthh1b']
     blood_sugar_month['h1c_color'] = hba1c_color(blood_sugar_month['h1c'])
     blood_sugar_week['gluc'] = api['averageweekgluc']
     blood_sugar_week['gluc_color'] = gluc_color(blood_sugar_week['gluc'])
